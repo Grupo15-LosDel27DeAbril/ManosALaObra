@@ -59,10 +59,9 @@ public class InitServiceInMemory {
        productoService.save(producto);
        usuario1.donarProducto(producto, app);
 
+
        appService.save(app);
        usuarioService.save(usuario1);
-
-
    }
 
 

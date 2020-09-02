@@ -4,8 +4,6 @@ import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
 import com.ManosALaObra.ManosALaObraBackend.Model.Usuario;
 import com.ManosALaObra.ManosALaObraBackend.Model.App;
 import com.ManosALaObra.ManosALaObraBackend.Service.ProductoService;
-import com.ManosALaObra.ManosALaObraBackend.Service.UsuarioService;
-import com.ManosALaObra.ManosALaObraBackend.Service.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
@@ -19,16 +17,10 @@ public class DonacionesController {
     @Autowired
     private ProductoService productoService;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-    @Autowired
-    private AppService appService;
-
     @CrossOrigin
-    @GetMapping("/api/productos")
+    @GetMapping("/api/donaciones")
     public List<Producto> listarDonaciones(){
-        //Donaciones realizadas.
+        // Donaciones cargadas en la app.
         return productoService.findAll();
     }
 

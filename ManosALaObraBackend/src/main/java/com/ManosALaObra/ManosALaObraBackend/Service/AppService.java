@@ -28,7 +28,6 @@ public class AppService {
 
 
     public App agregarDonacionEnLaApp(Long idApp, Long idProducto){
-       /*  a partir del id de la app y de los productos, agrego la donación de dicho producto a la app correspondiente.*/
         App app = findById(idApp);
         app.agregarDonacion(productoService.findById(idProducto));
         return save(app);

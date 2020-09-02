@@ -17,11 +17,12 @@ public class ProductoService {
     public Producto save(Producto model){
         return this.productoRepository.save(model);
     }
-    
+
     public Producto findById(Long id){ return this.productoRepository.findById(id).get();}
 
     public List<Producto> findAll(){ return productoRepository.buscarTodosLosProductos();}
 
+    /*
     public List<Producto> buscarProductosPorConsulta(String consulta){
         return productoRepository.findByNombreProductoContaining(consulta);
     }
@@ -29,8 +30,5 @@ public class ProductoService {
     public List<Producto> buscarProductosPorCategoria(String categoria){
         return productoRepository.findByCategoriaProductoContaining(categoria);
     }
-
-
-
-
+*/
 }

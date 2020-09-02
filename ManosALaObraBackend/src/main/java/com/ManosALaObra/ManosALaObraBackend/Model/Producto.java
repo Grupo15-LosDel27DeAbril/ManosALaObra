@@ -56,19 +56,25 @@ public class Producto {
         this.id = id;
     }
 
+    public Producto() {}
+
+    public Producto(String nombre){
+        this.setNombreProducto(nombre);
+    }
+
     public Producto(String nombreProducto, String descripcion, String imagen, String categoria) {
-        this.nombreProducto = nombreProducto;
-        this.categoria = categoria;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
+        this.setNombreProducto(nombreProducto);
+        this.setCategoria(categoria);
+        this.setDescripcion(descripcion);
+        this.setImagen(imagen);
     }
 
     public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Long id) {
-        this.nombreProducto = nombreProducto;
-        this.categoria = categoria;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.id = id;
+        this.setNombreProducto(nombreProducto);
+        this.setCategoria(categoria);
+        this.setDescripcion(descripcion);
+        this.setImagen(imagen);
+        this.setId(id);
     }
 
     public void imprimirEnPantalla() {

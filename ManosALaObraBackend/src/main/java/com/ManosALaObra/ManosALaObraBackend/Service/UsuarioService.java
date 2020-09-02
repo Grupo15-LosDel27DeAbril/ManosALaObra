@@ -2,9 +2,9 @@ package com.ManosALaObra.ManosALaObraBackend.Service;
 
 import Exceptions.UserExistException;
 import com.ManosALaObra.ManosALaObraBackend.Model.*;
-import com.ManosALaObra.ManosALaObraBackend.Repositories.AppRepository;
-import com.ManosALaObra.ManosALaObraBackend.Repositories.ProductoRepository;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.UsuarioRepository;
+import com.ManosALaObra.ManosALaObraBackend.Repositories.ProductoRepository;
+import com.ManosALaObra.ManosALaObraBackend.Repositories.AppRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -34,12 +34,11 @@ public class UsuarioService {
 
     public List<Usuario> findAll(){ return usuarioRepository.findAll();}
 
+    /*
     @Transactional
     public Usuario updateUsuario(Usuario newUser, Long idUser){
-      /* Actualizo los datos del usuario. */
         return usuarioRepository.findById(idUser).map(
                 user -> {
-                    /* Se verifica que no se vaya a actualizar el nombre de usuario a uno ya existente.*/
                     Optional<Usuario> userExist = usuarioRepository.findByNombreUsuario(newUser.getNombreUsuario());
                     boolean userExistBool = userExist.isEmpty();
                     if(!userExistBool){
@@ -53,7 +52,7 @@ public class UsuarioService {
                 }
         ).get();
     }
-
+    */
 
 
     public Usuario agregarDonacionASistema(Producto newProducto, Long idUser, App app){
@@ -67,4 +66,6 @@ public class UsuarioService {
         ).get();
     }
 
+
 }
+
