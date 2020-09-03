@@ -21,9 +21,7 @@ public class App {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
+    public void setProductos(List<Producto> productos) { this.productos = productos; }
 
     public long getId() {
         return id;
@@ -33,8 +31,10 @@ public class App {
         this.id = id;
     }
 
+    public App(){}
+
     public App(List<Producto> productos) {
-        this.productos = productos;
+        this.setProductos(productos);
     }
 
     public void agregarDonacion(Producto producto){

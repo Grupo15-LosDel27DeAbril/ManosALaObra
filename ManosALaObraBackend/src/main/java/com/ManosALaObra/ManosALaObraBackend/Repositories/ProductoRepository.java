@@ -22,10 +22,13 @@ public interface ProductoRepository extends CrudRepository<Producto, Integer> {
     List<Producto> findAll();
 
 
+
+    /**Realizo la busqueda de todas las donaciones que esten guardados en la base de datos**/
     @Query(value = "Select * from BSProducto order by nombre", nativeQuery = true)
     List<Producto> buscarTodosLosProductos();
 
-    /*
+
+    /**Realizo la búsqueda de todas las donaciones de productos cuyo Nombre tenga contenida el string "consulta" traido por parametro**/
     @Deprecated
     @Query(value = "Select * from BSProducto where nombre like %?1%", nativeQuery = true)
     List<Producto> buscarProductosPorConsulta(String consulta);
@@ -34,8 +37,8 @@ public interface ProductoRepository extends CrudRepository<Producto, Integer> {
     List<Producto> findByNombreProductoContaining(String consulta);
 
 
-    @Query(value = "Select * from BSProducto where categoria like %?1?", nativeQuery = true)
+    /** Realizo la búsqueda de todas las donaciones de productos cuya categoria tenga contenido el string "categoria" traido por parámetro**/
+    @Query(value = "Select * from BSProducto where categoria like %?1%", nativeQuery = true)
     List<Producto> findByCategoriaProductoContaining(String categoria);
 
- */
 }

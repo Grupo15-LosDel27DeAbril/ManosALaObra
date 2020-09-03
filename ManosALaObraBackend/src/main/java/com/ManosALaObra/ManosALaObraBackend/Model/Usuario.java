@@ -59,11 +59,13 @@ public class Usuario {
         this.password = password;
     }
 
+    public Usuario(){}
+
     public Usuario(String nombreUsuario, String domicilio, String email, String password) {
-        this.nombreUsuario = nombreUsuario;
-        this.domicilio = domicilio;
-        this.email = email;
-        this.password = password;
+        this.setNombreUsuario(nombreUsuario);
+        this.setDomicilio(domicilio);
+        this.setEmail(email);
+        this.setPassword(password);
     }
 
     public void donarProducto(Producto producto, App app){

@@ -22,7 +22,7 @@ public class ProductoService {
 
     public List<Producto> findAll(){ return productoRepository.buscarTodosLosProductos();}
 
-    /*
+
     public List<Producto> buscarProductosPorConsulta(String consulta){
         return productoRepository.findByNombreProductoContaining(consulta);
     }
@@ -30,5 +30,5 @@ public class ProductoService {
     public List<Producto> buscarProductosPorCategoria(String categoria){
         return productoRepository.findByCategoriaProductoContaining(categoria);
     }
-*/
+
 }
