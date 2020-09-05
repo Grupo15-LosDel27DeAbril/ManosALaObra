@@ -17,7 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 //en app.component
 
 
-NgModule({
+@NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
