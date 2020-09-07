@@ -15,6 +15,7 @@ public class Producto {
     private String categoria;
     private String descripcion;
     private String imagen;
+    //private Usuario donante;
 
     public String getNombreProducto() {
         return nombreProducto;
@@ -56,7 +57,15 @@ public class Producto {
         this.id = id;
     }
 
+    //public String getUbicacionDelDonante(){
+    //    return this.donante.getDomicilio();
+    //}
+
     public Producto() {}
+
+    //public Producto(Usuario unDonante){
+    //    this.donante = unDonante;
+    //}
 
     public Producto(String nombre){
         this.setNombreProducto(nombre);
