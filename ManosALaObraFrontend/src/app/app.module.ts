@@ -13,6 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MainComponent } from './components/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { HeaderComponent } from './header/header.component';
 /*modulos para fecha y moneda*/
 //en app.component
 
@@ -21,7 +22,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     declarations: [
         AppComponent,
         HomeComponent,
-        MainComponent
+        MainComponent,
+        HeaderComponent
     ],
     imports: [
       BrowserModule,
