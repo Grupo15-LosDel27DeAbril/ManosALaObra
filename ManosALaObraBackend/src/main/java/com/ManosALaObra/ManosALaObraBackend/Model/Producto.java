@@ -3,6 +3,7 @@ package com.ManosALaObra.ManosALaObraBackend.Model;
 import javax.persistence.*;
 import org.apache.log4j.Logger;
 
+
 @Entity
 @Table(name = "BSProducto")
 public class Producto {

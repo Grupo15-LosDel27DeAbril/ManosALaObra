@@ -14,6 +14,7 @@ import { MainComponent } from './components/main/main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HeaderComponent } from './header/header.component';
+import { FormComponent } from './form/form.component';
 /*modulos para fecha y moneda*/
 //en app.component
 
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
         AppComponent,
         HomeComponent,
         MainComponent,
-        HeaderComponent
+        HeaderComponent,
+        FormComponent
     ],
     imports: [
       BrowserModule,

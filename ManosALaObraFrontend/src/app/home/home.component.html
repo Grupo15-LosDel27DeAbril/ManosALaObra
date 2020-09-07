@@ -14,6 +14,13 @@
               <h6 class="card-subtitle mb-2 text-muted">{{producto.categoria}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.descripcion}}</h6>
           </div>
+          <div class="card-footer text-muted">
+            <a routerLink="solicitar">
+              <button class="btn btn-primary"  (click)=completarFormulario() >solicitar donacion</button>
+            </a>
+
+          </div>
+
         </div>
       </div>
     </div>
