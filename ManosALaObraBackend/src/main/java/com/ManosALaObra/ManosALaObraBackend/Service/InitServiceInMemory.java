@@ -52,7 +52,7 @@ public class InitServiceInMemory {
                .withEmail("alex.quinhonez@gmail.com")
                .withPassword("8787")
                .build();
-       Producto producto = new Producto("Naranjas", "5 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas");
+       Producto producto = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas");
        productoService.save(producto);
        usuario1.donarProducto(producto, app);
        producto = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no perecedero");

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DataService } from '../data.service';
+
 
 @Component({
   selector: 'app-header',

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { DonacionCreateComponent } from './donacion-create/donacion-create.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 /* modulos para traduccion dinamica*/
@@ -23,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
         AppComponent,
         HomeComponent,
         MainComponent,
-        HeaderComponent
+        HeaderComponent,
+        DonacionCreateComponent
     ],
     imports: [
       BrowserModule,
