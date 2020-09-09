@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
         console.log("Save button is clicked!", this.data.getProductos());
 
     }
-    completarFormulario(): void{
-         this.route.navigateByUrl('form');
 
+    public completarFormulario(){
+         this.route.navigateByUrl('form');
     }
 }
