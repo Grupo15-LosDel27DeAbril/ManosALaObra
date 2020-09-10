@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { DataService } from '../data.service';
 import { Producto } from '../producto';
-import { ApiService } from '../api.service'; 
+import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-home',
