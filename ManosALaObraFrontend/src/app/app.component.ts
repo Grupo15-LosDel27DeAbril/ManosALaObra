@@ -37,5 +37,24 @@ export class AppComponent {
    public getProductos(): Array<{nombreProducto,categoria,descripcion,imagen}>{
        return this.data.productos
    }
-}
+
+   handleError(error) {
+    let errorMessage = '';
+     errorMessage = `Error: ${error.error.message}`;
+    window.alert(errorMessage);
+  }
+
+   public donarProducto(product: Producto){
+     this.api.donarProductoAApi(product,  1 , 1) 
+         .subscribe(resp => { const data = resp.body
+                              this.data.setuserData(data);
+                            },
+                            err => {
+                              console.log(err);
+                              this.handleError(err);
+                            });
+    }
+
+  }
+
 

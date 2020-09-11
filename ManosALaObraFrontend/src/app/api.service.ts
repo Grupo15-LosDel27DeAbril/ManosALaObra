@@ -18,5 +18,9 @@ export class ApiService {
         return this.http.get<Producto[]>(
             this.urlLocal+'donaciones');
     }
+
+    donarProductoAApi(producto: Producto, idUser:any, idApp: any): Observable<HttpResponse<UsuarioData>>{
+        return this.http.post<UsuarioData>(this.urlLocal+"donarProducto/"+idUser+"/"+idApp, producto, {observe: 'response'})
+    } 
     
 }

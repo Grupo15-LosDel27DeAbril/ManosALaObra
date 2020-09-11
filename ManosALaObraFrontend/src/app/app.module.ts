@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { DonacionCreateComponent } from './donacion-create/donacion-create.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 /* modulos para traduccion dinamica*/
@@ -25,7 +26,8 @@ import { FormComponent } from './form/form.component';
         HomeComponent,
         MainComponent,
         HeaderComponent,
-        FormComponent
+        FormComponent,
+        DonacionCreateComponent
     ],
     imports: [
       BrowserModule,
@@ -54,4 +56,4 @@ export class AppModule { }
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
-  
+

@@ -2,23 +2,38 @@
 <app-header></app-header>
 
 <body>
-<form action="/my-handling-form-page" method="post">
-  <p>solicitar donacion</p>
+
+<div class="container p-destacados" style="margin-top: 70px;">
+  <h3 >solicitar donacion</h3>
   <p>por favor complete sus datos y en breve el/la donante se pondra en contacto con usted</p>
+</div>
+<div class="container p-destacados" style="margin-top: 70px;">
+<form action="/my-handling-form-page" method="post">
 
   <ul>
   <li>
     <label for="name">Nombre:</label>
-    <input type="text" id="name" name="user_name">
   </li>
+    <ul>
+    <input type="text" id="name" name="user_name">
+  </ul>
   <li>
     <label for="mail">Correo electrónico:</label>
-    <input type="email" id="mail" name="user_mail">
   </li>
+    <ul>
+    <input type="email" id="mail" name="user_mail">
+  </ul>
   <li>
     <label for="msg">Mensaje:</label>
-    <textarea id="msg" name="user_message"></textarea>
   </li>
+    <ul>
+    <textarea id="msg" name="user_message"></textarea>
+  </ul>
  </ul>
 </form>
+  </div>
+<div class="card-footer text-muted">
+  <button class="btn btn-primary"   >enviar</button>
+
+</div>
 </body>

@@ -6,7 +6,6 @@ import { Producto } from '../producto';
 import { ApiService } from '../api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
-
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',

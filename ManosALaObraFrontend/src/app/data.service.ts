@@ -21,6 +21,7 @@ export class DataService {
         this.userUpdate=bool;
     }
 
+
     getProductos(): Producto[]{
     /*Busco todo los productos.*/
         return this.productos;
@@ -37,6 +38,10 @@ export class DataService {
     setuserData(user: UsuarioData){
         console.log("Usuario actualizado:",user)
         return this.userData = user; 
+    }
+
+    setProductos(prods: Producto[]){
+        this.productos = prods; 
     }
 
     actualizarNombreUsuario(){
