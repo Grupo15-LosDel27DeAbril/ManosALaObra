@@ -3,7 +3,6 @@ package com.ManosALaObra.ManosALaObraBackend.Model;
 import javax.persistence.*;
 import org.apache.log4j.Logger;
 
-
 @Entity
 @Table(name = "BSProducto")
 public class Producto {
@@ -16,7 +15,6 @@ public class Producto {
     private String categoria;
     private String descripcion;
     private String imagen;
-    //private Usuario donante;
 
     public String getNombreProducto() {
         return nombreProducto;
@@ -58,15 +56,7 @@ public class Producto {
         this.id = id;
     }
 
-    //public String getUbicacionDelDonante(){
-    //    return this.donante.getDomicilio();
-    //}
-
     public Producto() {}
-
-    //public Producto(Usuario unDonante){
-    //    this.donante = unDonante;
-    //}
 
     public Producto(String nombre){
         this.setNombreProducto(nombre);

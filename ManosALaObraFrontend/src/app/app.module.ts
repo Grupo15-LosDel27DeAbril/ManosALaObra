@@ -56,4 +56,4 @@ export class AppModule { }
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
-
+  

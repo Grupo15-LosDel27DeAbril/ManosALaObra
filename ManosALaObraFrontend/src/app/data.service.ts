@@ -21,7 +21,6 @@ export class DataService {
         this.userUpdate=bool;
     }
 
-
     getProductos(): Producto[]{
     /*Busco todo los productos.*/
         return this.productos;
