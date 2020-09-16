@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AgmCoreModule } from '@agm/core';
 import { HomeComponent } from './home/home.component';
 import { DonacionCreateComponent } from './donacion-create/donacion-create.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
+import { MapComponent } from './map/map.component';
 /*modulos para fecha y moneda*/
 //en app.component
 
@@ -27,10 +29,15 @@ import { FormComponent } from './form/form.component';
         MainComponent,
         HeaderComponent,
         FormComponent,
-        DonacionCreateComponent
+        DonacionCreateComponent,
+        MapComponent
     ],
     imports: [
       BrowserModule,
+      AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyDJRqapKTB9P4DhNX6Tdkx6XruQIOIfEoY',
+        libraries: ['places']
+      }),
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
