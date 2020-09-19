@@ -15,6 +15,9 @@ public class Producto {
     private String categoria;
     private String descripcion;
     private String imagen;
+    private Double latitude;
+    private Double longitude;
+    private String lugar;
 
     public String getNombreProducto() {
         return nombreProducto;
@@ -56,25 +59,55 @@ public class Producto {
         this.id = id;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
     public Producto() {}
 
     public Producto(String nombre){
         this.setNombreProducto(nombre);
     }
 
-    public Producto(String nombreProducto, String descripcion, String imagen, String categoria) {
+    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Double latitude, Double longitude, String lugar) {
         this.setNombreProducto(nombreProducto);
         this.setCategoria(categoria);
         this.setDescripcion(descripcion);
         this.setImagen(imagen);
+        this.setLatitude(latitude);
+        this.setLongitude(longitude);
+        this.setLugar(lugar);
     }
 
-    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Long id) {
+    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Long id, Double latitude, Double longitude, String lugar) {
         this.setNombreProducto(nombreProducto);
         this.setCategoria(categoria);
         this.setDescripcion(descripcion);
         this.setImagen(imagen);
         this.setId(id);
+        this.setLatitude(latitude);
+        this.setLongitude(longitude);
+        this.setLugar(lugar);
     }
 
     public void imprimirEnPantalla() {

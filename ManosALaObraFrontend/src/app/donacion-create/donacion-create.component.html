@@ -75,6 +75,43 @@
                     </div>
       
                 </div>
+
+                <div class="form-group col-md-6">
+                    <label> Latitude </label>
+                    <input type="number"  class="form-control"  formControlName="latitude">
+                    <div class=" alert-danger" *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)">
+                      <div class="container-error-message"  *ngIf="latitude.errors.required">
+                        <small>Es necesario colocar latitude del lugar.</small>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label> Longitude </label>
+                    <input type="number"  class="form-control"  formControlName="longitude">
+                    <div class=" alert-danger" *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)">
+                      <div class="container-error-message"  *ngIf="longitude.errors.required">
+                        <small>Es necesario colocar longitude del lugar.</small>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label> Lugar </label>
+                    <input type="text"  class="form-control" formControlName="lugar">
+      
+                    <div class="alert-danger" *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+                      <div class="container-error-message"  *ngIf="lugar.errors.required">
+                         <small> El lugar de entrega es obligatorio.</small>
+                       </div>
+                       <div class="container-error-message"  *ngIf="lugar.errors.minlength">
+                         <small> El lugar de entrega tiene que ser mayor a 2 caracteres.</small>  
+                       </div>     
+                    </div>
+      
+                </div>
+
+
             </div>
 
             <br>

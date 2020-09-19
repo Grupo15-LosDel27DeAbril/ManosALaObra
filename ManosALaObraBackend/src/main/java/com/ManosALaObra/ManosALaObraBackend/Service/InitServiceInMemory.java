@@ -3,6 +3,7 @@ package com.ManosALaObra.ManosALaObraBackend.Service;
 import javax.annotation.PostConstruct;
 
 import com.ManosALaObra.ManosALaObraBackend.Model.App;
+import com.ManosALaObra.ManosALaObraBackend.Model.Geo;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
 import com.ManosALaObra.ManosALaObraBackend.Model.Usuario;
 import com.ManosALaObra.ManosALaObraBackend.Tools.Builder.AppBuilder;
@@ -52,10 +53,10 @@ public class InitServiceInMemory {
                .withEmail("alex.quinhonez@gmail.com")
                .withPassword("8787")
                .build();
-       Producto producto = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas");
+       Producto producto = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.753940, -58.249336, "ferreteria");
        productoService.save(producto);
        usuario1.donarProducto(producto, app);
-       producto = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no perecedero");
+       producto = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no perecedero", -34.750148, -58.245461, "frigorifico");
        productoService.save(producto);
        usuario1.donarProducto(producto, app);
 

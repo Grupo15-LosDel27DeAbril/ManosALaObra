@@ -25,12 +25,12 @@ import { MapComponent } from './map/map.component';
 @NgModule({
     declarations: [
         AppComponent,
+        MapComponent,
         HomeComponent,
         MainComponent,
         HeaderComponent,
         FormComponent,
         DonacionCreateComponent,
-        MapComponent
     ],
     imports: [
       BrowserModule,

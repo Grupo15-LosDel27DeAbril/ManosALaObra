@@ -14,6 +14,9 @@ export class DataService {
     userData: UsuarioData;
     userUpdate: Boolean = false;
     appData: App;
+    lat: number;
+    lng: number;
+    lugar: String;
 
     constructor() {}
 
