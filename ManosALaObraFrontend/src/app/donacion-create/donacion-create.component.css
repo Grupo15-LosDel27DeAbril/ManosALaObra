@@ -21,6 +21,7 @@
     overflow: hidden;
     background-attachment: fixed;
     background-position: center top;
+    overflow-y: scroll;
   
   }
   
@@ -31,3 +32,9 @@
   .container-error-message{
     padding: 1px;
   }
+
+  
+#mapa-mapbox{
+  width: 100%;
+  height: 380%;
+}

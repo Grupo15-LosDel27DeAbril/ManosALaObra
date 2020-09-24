@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 
 <body>
@@ -14,6 +13,7 @@
               <h5 class="card-title">{{producto.nombreProducto}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.categoria}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.descripcion}}</h6>
+              <button class="btn btn-success" (click)="ubicacionEnMapa(producto)"> Punto de recolección </button>
           </div>
           <div class="card-footer text-muted">
             <!--<a routerLink="/form">-->

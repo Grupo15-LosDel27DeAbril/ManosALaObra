@@ -14,13 +14,15 @@ export class DataService {
     userData: UsuarioData;
     userUpdate: Boolean = false;
     appData: App;
+    lng: number;
+    lat: number;
+    lugar: String;  
 
     constructor() {}
 
     setUserUpdate(bool: Boolean){
         this.userUpdate=bool;
     }
-
 
     getProductos(): Producto[]{
     /*Busco todo los productos.*/

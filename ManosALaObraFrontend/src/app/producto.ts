@@ -3,5 +3,8 @@ export interface Producto{
     nombreProducto: string,
     categoria: string,
     descripcion: string,
-    imagen: string
+    imagen: string,
+    latitude: number,
+    longitude: number,
+    lugar: string
 }

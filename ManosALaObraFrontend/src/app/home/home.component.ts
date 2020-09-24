@@ -21,9 +21,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.api.getDonacionesAPI$().subscribe(resp => { this.productos = resp;});
-        console.log("Save button is clicked!", this.data.getProductos());
+        this.api.getDonacionesAPI$().subscribe(resp => { this.productos = resp; this.data.productos = resp});
+        console.log("Save button is clicked!", this.data.productos);
 
+    }
+
+    public ubicacionEnMapa(producto){
+        this.data.lat = producto.latitude;
+        this.data.lng = producto.longitude;
+        this.data.lugar = producto.lugar;
+        this.route.navigateByUrl('map');
     }
 
     public completarFormulario(){

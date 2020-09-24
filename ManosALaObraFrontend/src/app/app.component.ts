@@ -44,17 +44,15 @@ export class AppComponent {
     window.alert(errorMessage);
   }
 
-   public donarProducto(product: Producto){
-     this.api.donarProductoAApi(product,  1 , 1) 
-         .subscribe(resp => { const data = resp.body
-                              this.data.setuserData(data);
-                            },
-                            err => {
-                              console.log(err);
-                              this.handleError(err);
-                            });
-    }
-
-  }
-
+  public donarProducto(product: Producto){
+    this.api.donarProductoAApi(product,  1 , 1) 
+        .subscribe(resp => { const data = resp.body
+                             this.data.setuserData(data);
+                           },
+                           err => {
+                             console.log(err);
+                             this.handleError(err);
+                           });
+   }
+}
 
