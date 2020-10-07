@@ -10,7 +10,7 @@
        (scrolledUp)="onScrollUp()">
    <div class="container product-form " style="margin-top: 100px;">
      <div class="row">
-         <div class="col-10">  
+         <div class="col-10">
            <h1 >Realizar Donacion</h1>
         </div>
        <div class="col">
@@ -27,9 +27,9 @@
                <div class="form-group col-md-6">
                     <label> Nombre </label>
                     <input  type="text"  class="form-control"  formControlName="nombreProducto">
-                    
+
                     <div class=" alert-danger" *ngIf="nombreProducto.invalid && (nombreProducto.dirty || nombreProducto.touched)">
-                       <div class="container-error-message"  *ngIf="nombreProducto.errors.required">  
+                       <div class="container-error-message"  *ngIf="nombreProducto.errors.required">
                          <small>El nombre del producto es obligatorio.</small>
                        </div>
                        <div class="container-error-message"  *ngIf="nombreProducto.errors.minlength">
@@ -37,7 +37,7 @@
                        </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group col-md-6">
                   <label> Categoria </label>
                   <input type="text"  class="form-control" formControlName="categoria">
@@ -47,8 +47,8 @@
                       <small>La categoria del producto es obligatoria.</small>
                     </div>
                     <div class="container-error-message"  *ngIf="categoria.errors.minlength">
-                      <small> La categoria del producto tiene que ser mayor a 2 caracteres.</small>  
-                    </div>     
+                      <small> La categoria del producto tiene que ser mayor a 2 caracteres.</small>
+                    </div>
                   </div>
 
                 </div>
@@ -56,33 +56,33 @@
                 <div class="form-group col-md-12">
                     <label> Descripcion </label>
                     <input type="text"  class="form-control" formControlName="descripcion">
-      
+
                     <div class="alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
                       <div class="container-error-message"  *ngIf="descripcion.errors.required">
                          <small>La descripcion del producto es obligatoria.</small>
                        </div>
                        <div class="container-error-message"  *ngIf="descripcion.errors.minlength">
-                         <small> La descripcion del producto tiene que ser mayor a 2 caracteres.</small>  
-                       </div>     
+                         <small> La descripcion del producto tiene que ser mayor a 2 caracteres.</small>
+                       </div>
                     </div>
-      
+
                 </div>
 
                 <div class="form-group col-md-12">
                     <label> Imagen </label>
                     <input type="text"  class="form-control" formControlName="imagen">
-      
+
                     <div class="alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
                       <div class="container-error-message"  *ngIf="imagen.errors.required">
                          <small>La imagen del producto es obligatoria.</small>
                       </div>
                       <div class="container-error-message"  *ngIf="imagen.errors.minlength">
-                         <small> La imagen del producto tiene que ser mayor a 5 caracteres.</small>  
-                      </div>     
+                         <small> La imagen del producto tiene que ser mayor a 5 caracteres.</small>
+                      </div>
                     </div>
 
                 </div>
-                
+
 
                 <h1> Ubicación de recolección </h1>
                 <div class="form-group col-md-6">
@@ -101,8 +101,9 @@
                 <div class="form-group col-md-6"></div>
                 <div class="form-group col-md-6"></div>
 
+                <!-- no es necesario que el usuario vea estos campos
                 <div class="form-group col-md-6">
-                  <label> Longitude </label>
+                 1 <label> Longitude </label>
                   <input type="number"  class="form-control"  formControlName="longitude">
                   <div class=" alert-danger" *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)">
                     <div class="container-error-message"  *ngIf="longitude.errors.required">
@@ -120,20 +121,21 @@
                   </div>
                 </div>
                </div>
+               -->
 
                <div class="form-group col-md-6">
                 <label> Lugar </label>
                 <input type="text"  class="form-control" formControlName="lugar">
-  
+
                 <div class="alert-danger" *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
                   <div class="container-error-message"  *ngIf="lugar.errors.required">
                      <small> El lugar de entrega es obligatorio.</small>
                    </div>
                    <div class="container-error-message"  *ngIf="lugar.errors.minlength">
-                     <small> El lugar de entrega tiene que ser mayor a 2 caracteres.</small>  
-                   </div>     
+                     <small> El lugar de entrega tiene que ser mayor a 2 caracteres.</small>
+                   </div>
                 </div>
-  
+
             </div>
 
 
@@ -142,18 +144,18 @@
 
             <br>
             <br>
-                
-            <button type="submit" class="btn btn-outline-success" [disabled]="!productoForm.valid"> Donar </button>      
+
+            <button type="submit" class="btn btn-outline-success" [disabled]="!productoForm.valid"> Donar </button>
         </form>
 
         <br>
         <div class="alert alert-success alert-dismissible fade show" role="alert" [hidden]="!alert" >
-          <strong> Donación realizada satisfactoriamente </strong> Muchas gracias! 
+          <strong> Donación realizada satisfactoriamente </strong> Muchas gracias!
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
      </div>
-  </div> 
- </div> 
+  </div>
+ </div>
 </body>
