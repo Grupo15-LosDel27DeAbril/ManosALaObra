@@ -18,6 +18,11 @@ public class ProductoService {
         return this.productoRepository.save(model);
     }
 
+    @Transactional
+    public void delete(Long id){
+        productoRepository.delete(this.findById(id));
+    }
+
     public Producto findById(Long id){ return this.productoRepository.findById(id).get();}
 
     public List<Producto> findAll(){ return productoRepository.buscarTodosLosProductos();}
@@ -29,6 +34,11 @@ public class ProductoService {
 
     public List<Producto> buscarProductosPorCategoria(String categoria){
         return productoRepository.findByCategoriaProductoContaining(categoria);
+    }
+
+    @Transactional
+    public void deleteAll(){
+        productoRepository.deleteAll();
     }
 
 }
