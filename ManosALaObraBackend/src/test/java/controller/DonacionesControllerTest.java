@@ -31,7 +31,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ContextConfiguration(classes = DonacionesController.class)
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = DonacionesController.class)
-public class DonacionControllerTest {
+public class DonacionesControllerTest {
 
     @MockBean
     private ProductoService productoService;
