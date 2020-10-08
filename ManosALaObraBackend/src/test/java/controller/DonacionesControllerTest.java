@@ -17,6 +17,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,8 +27,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.any;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -72,7 +76,7 @@ public class DonacionesControllerTest {
 
     @Test
     public void getAllDonacionesTest() {
-        Assert.assertEquals(productoService.findAll().size(), 0);
+        assertEquals(productoService.findAll().size(), 0);
     }
 
     @Test
@@ -98,23 +102,45 @@ public class DonacionesControllerTest {
         Long idApp = 1L;
 
         Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787");
-        usuario.setId(1L);
+        //usuario.setId(1L);
 
         Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata");
-        producto.setId(1L);
+        //producto.setId(1L);
 
         App app = new App(new ArrayList<Producto>());
 
-        given(usuarioService.agregarDonacionASistema(producto, usuario.getId(), app)).willReturn(usuario);
+        given(appService.findById(idApp)).willReturn(app);
+        given(usuarioService.findById(idUser)).willReturn(usuario);
+        given(usuarioService.agregarDonacionASistema(producto, idUser, app)).willReturn(usuario);
+
 
         mockMvc.perform(post("/api/donarProducto/{idUser}/{idApp}", idUser, idApp)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk());
-
     }
 
+    @Test
+    public void testObtenerBusquedaIncorrecta() throws Exception{
 
+        String found = "Naranjas";
+
+        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes");
+
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+
+
+        given(productoService.buscarProductosPorConsulta(found)).willReturn(this.agregarDonacion(productos, producto1));
+
+        mockMvc.perform(get("/api/buscarProductos").param("q", "Naranja"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.size()", is(0)));
+    }
+
+    ArrayList<Producto> agregarDonacion(ArrayList<Producto> current, Producto producto){
+        current.add(producto);
+        return current;
+    }
 
 }
 
