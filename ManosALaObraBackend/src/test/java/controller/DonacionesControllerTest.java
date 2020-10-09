@@ -121,6 +121,23 @@ public class DonacionesControllerTest {
     }
 
     @Test
+    public void testObtenerBusquedaCorrecta() throws Exception{
+
+        String found = "Arroz";
+
+        Producto producto1 = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no parecedero", -34.746174, -58.241824, "Frigorifico");
+
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+
+
+        given(productoService.buscarProductosPorConsulta(found)).willReturn(this.agregarDonacion(productos, producto1));
+
+        mockMvc.perform(get("/api/buscarProductos").param("q", "Arroz"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(jsonPath("$.size()", is(1)));
+    }
+
+    @Test
     public void testObtenerBusquedaIncorrecta() throws Exception{
 
         String found = "Naranjas";
@@ -132,7 +149,7 @@ public class DonacionesControllerTest {
 
         given(productoService.buscarProductosPorConsulta(found)).willReturn(this.agregarDonacion(productos, producto1));
 
-        mockMvc.perform(get("/api/buscarProductos").param("q", "Naranja"))
+        mockMvc.perform(get("/api/buscarProductos").param("q", "Pera"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(jsonPath("$.size()", is(0)));
     }
