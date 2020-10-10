@@ -59,6 +59,7 @@ public class UsuarioService {
     public Usuario agregarDonacionASistema(Producto newProducto, Long idUser, App app){
         return usuarioRepository.findById(idUser).map(
                 user ->{
+                    newProducto.setEmailDonante(user.getEmail());//me llevo el email de quien lo publico
                     productoService.save(newProducto);
                     appService.save(app);
                     user.donarProducto(newProducto, app);

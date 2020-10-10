@@ -6,5 +6,6 @@ export interface Producto{
     imagen: string,
     latitude: number,
     longitude: number,
-    lugar: string
+    lugar: string,
+    email: string
 }
