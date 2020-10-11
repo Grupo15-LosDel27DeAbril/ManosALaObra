@@ -21,9 +21,15 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 /*modulos para fecha y moneda*/
 //en app.component
 
+export const importsConversor = [
+  BrowserModule,
+  FormsModule
+]
+
 
 @NgModule({
     declarations: [
+        importsConversor,
         AppComponent,
         HomeComponent,
         MainComponent,
