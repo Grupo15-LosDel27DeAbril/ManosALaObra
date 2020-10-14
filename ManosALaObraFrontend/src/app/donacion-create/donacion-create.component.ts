@@ -85,7 +85,9 @@ export class DonacionCreateComponent implements OnInit{
             imagen: new FormControl('',[Validators.required, Validators.minLength(5)]),
             longitude: new FormControl('',[Validators.required]),
             latitude: new FormControl('',[Validators.required]),
-            lugar: new FormControl('',[Validators.required, Validators.minLength(2)])
+            lugar: new FormControl('',[Validators.required, Validators.minLength(2)]),
+            fechaPublicacion: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+            validoHasta: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]) 
         });
     }
     onResetForm(){
@@ -123,6 +125,14 @@ export class DonacionCreateComponent implements OnInit{
     }
     get lugar(){
         return this.productoForm.get('lugar');
+    }
+
+    get fechaPublicacion(){
+        return this.productoForm.get('fechaPublicacion');
+    }
+
+    get validoHasta(){
+        return this.productoForm.get('validoHasta');
     }
 
     public volverAlHome(){

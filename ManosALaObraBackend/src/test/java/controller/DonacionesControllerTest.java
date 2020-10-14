@@ -26,6 +26,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class DonacionesControllerTest {
 
         Long id = 1L;
 
-        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes");
+        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 13), LocalDate.of(2020, 10, 23 ));
 
         given(productoService.findById(id)).willReturn(producto1);
 
@@ -104,7 +105,7 @@ public class DonacionesControllerTest {
         Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787");
         //usuario.setId(1L);
 
-        Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata");
+        Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata", LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 20));
         //producto.setId(1L);
 
         App app = new App(new ArrayList<Producto>());
@@ -125,7 +126,7 @@ public class DonacionesControllerTest {
 
         String found = "Arroz";
 
-        Producto producto1 = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no parecedero", -34.746174, -58.241824, "Frigorifico");
+        Producto producto1 = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no parecedero", -34.746174, -58.241824, "Frigorifico", LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 22));
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
 
@@ -142,7 +143,7 @@ public class DonacionesControllerTest {
 
         String found = "Naranjas";
 
-        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes");
+        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 11), LocalDate.of(2020, 10, 25));
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
 
