@@ -92,7 +92,6 @@ export class DonacionCreateComponent implements OnInit{
             nombreProducto: new FormControl('',[Validators.required,Validators.minLength(2)]),
             categoria: new FormControl('',[Validators.required, Validators.minLength(2)]),
             descripcion: new FormControl('',[Validators.required, Validators.minLength(2)]),
-            imagen: new FormControl('',[Validators.required]),
             longitude: new FormControl('',[Validators.required]),
             latitude: new FormControl('',[Validators.required]),
             lugar: new FormControl('',[Validators.required, Validators.minLength(2)]),
