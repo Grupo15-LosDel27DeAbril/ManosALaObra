@@ -1,22 +1,31 @@
 package com.ManosALaObra.ManosALaObraBackend.Tools.Builder;
 
-import com.ManosALaObra.ManosALaObraBackend.Model.Geo;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
+import org.hibernate.type.ImageType;
+
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.io.File;
+import java.time.LocalDate;
 
 public class ProductoBuilder {
 
     private String nombreProducto = "sin nombre";
     private String categoria = "sin categoria";
     private String descripcion = "sin descripcion";
-    private String imagen = "url no asignada";
+    private File imagen = new File("sin path");
     private Double latitude = 0.0;
     private Double longitude = 0.0;
     private String lugar = "sin lugar";
+    private LocalDate fechaPublicacion = LocalDate.of(2020, 10, 13);
+    private LocalDate fechaLimite = LocalDate.of(2020, 10, 20);
+
 
 
     public Producto build() {
         long identificador = new Long(1);
-        Producto producto = new Producto(nombreProducto, descripcion, imagen, categoria, identificador, latitude, longitude, lugar);
+        Producto producto = new Producto(nombreProducto, descripcion, imagen, categoria, identificador, latitude, longitude, lugar, fechaPublicacion, fechaLimite);
         return producto;
     }
 
@@ -30,7 +39,7 @@ public class ProductoBuilder {
         return this;
     }
 
-    public ProductoBuilder withImagen(String aValue){
+    public ProductoBuilder withImagen(File aValue){
         imagen = aValue;
         return this;
     }
@@ -52,6 +61,16 @@ public class ProductoBuilder {
 
     public ProductoBuilder withLugar(String aPlace){
         lugar = aPlace;
+        return this;
+    }
+
+    public ProductoBuilder withFechaPublicacion(LocalDate aDate){
+        fechaPublicacion = aDate;
+        return this;
+    }
+
+    public ProductoBuilder withFechaLimite(LocalDate aDate){
+        fechaLimite = aDate;
         return this;
     }
 }

@@ -5,6 +5,7 @@ import com.ManosALaObra.ManosALaObraBackend.Model.*;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.UsuarioRepository;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.ProductoRepository;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.AppRepository;
+import com.ManosALaObra.ManosALaObraBackend.Tools.Builder.UsuarioBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -58,12 +59,33 @@ public class UsuarioService {
     public Usuario agregarDonacionASistema(Producto newProducto, Long idUser, App app){
         return usuarioRepository.findById(idUser).map(
                 user ->{
+                    newProducto.setEmailDonante(user.getEmail());//me llevo el email de quien lo publico
                     productoService.save(newProducto);
                     appService.save(app);
                     user.donarProducto(newProducto, app);
                     return usuarioRepository.save(user);
                 }
         ).get();
+    }
+
+    @Transactional
+    public Usuario loguearWithGoogle(UsuarioLogin user){
+        // Primero se busca al usuario que coincida con el mail de google logueado, si no existe
+        // se lo crea y se lo devuelve para que después el frontend se encargue de gestionar los datos.
+        Usuario userReturn = null;
+        Optional<Usuario> userReturnOptional = this.usuarioRepository.findByEmail(user.getEmail());
+        /* Si no existe un usuario con ese email, entonces se lo crea */
+        if( userReturnOptional.isEmpty() ){
+            userReturn = new UsuarioBuilder().withNombreUsuario(user.getEmail())
+                                             .withEmail(user.getEmail())
+                                             .withPassword("")
+                                             .build();
+            /* Se almacena el usuario en la BD */
+            this.save(userReturn);
+        }else{
+            userReturn = userReturnOptional.get();
+        }
+        return userReturn;
     }
 
 

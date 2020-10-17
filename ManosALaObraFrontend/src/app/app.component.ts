@@ -45,7 +45,7 @@ export class AppComponent {
   }
 
   public donarProducto(product: Producto){
-    this.api.donarProductoAApi(product,  1 , 1) 
+    this.api.donarProductoAApi(product, this.data.getuserData().id, 1) 
         .subscribe(resp => { const data = resp.body
                              this.data.setuserData(data);
                            },
@@ -54,5 +54,28 @@ export class AppComponent {
                              this.handleError(err);
                            });
    }
+
+   public getUserData(idUser: string){
+     /* Se consulta a la API y se obtiene los datos del usuario */
+     this.api.getUserData$(idUser)
+         .subscribe(resp => {
+                        const data = resp.body
+                        this.data.userData = data;
+                        this.data.nombreUsuario = this.data.userData.nombreUsuario;
+                        this.router.navigateByUrl('/home');
+         },
+         err => console.log(err));
+   }
+
+   public gestionarLogin(user: any){
+     /*Esta función se encarga de usar la api para loguearme , en este caso con Google*/
+     this.api.loginWithGoogle(user)
+         .subscribe(resp => { const data = resp
+                              /* Se llena el UserData con todos los datos del usuario. */
+                              this.getUserData(data.id.toString()); 
+                            },
+                    err => console.log(err));
+   }
+   
 }
 

@@ -1,13 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AgmCoreModule } from '@agm/core';
 import { HomeComponent } from './home/home.component';
 import { DonacionCreateComponent } from './donacion-create/donacion-create.component';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MapComponent } from './map/map.component';
+/*Modulos para inicio de sesion para redes sociales*/
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 /* modulos para traduccion dinamica*/
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -17,33 +21,44 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
-import { MapComponent } from './map/map.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FileUploadModule } from 'ng2-file-upload';
 /*modulos para fecha y moneda*/
 //en app.component
 
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("311052136099-qqf6f12v6pdpt5tfv67lqfe8gdivg920.apps.googleusercontent.com")
+  },
+]);
+
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
     declarations: [
         AppComponent,
-        MapComponent,
+        LoginComponent,
         HomeComponent,
         MainComponent,
         HeaderComponent,
         FormComponent,
         DonacionCreateComponent,
+        MapComponent
     ],
     imports: [
       BrowserModule,
-      AgmCoreModule.forRoot({
-        apiKey: 'AIzaSyDJRqapKTB9P4DhNX6Tdkx6XruQIOIfEoY',
-        libraries: ['places']
-      }),
+      InfiniteScrollModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
       MatPaginatorModule,
       ReactiveFormsModule,
       CommonModule,
+      FileUploadModule,
+      SocialLoginModule,
       //NgbModule,
         TranslateModule.forRoot(),
         HttpClientModule,
@@ -56,6 +71,10 @@ import { MapComponent } from './map/map.component';
             }),
         BrowserAnimationsModule
     ],
+    providers: [ {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
