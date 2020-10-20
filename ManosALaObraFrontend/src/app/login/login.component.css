@@ -17,13 +17,13 @@ h1 {
 }
 .custom-form {
   min-width: 300px;
-  max-width: 60%;
+  max-width: 40%;
   margin: 0px auto;
   background: rgba(255, 255, 255, 0.15);
   padding: 2rem 3rem;
   margin: auto;
   border-radius: 2.5rem;
-  background-color: cyan;
+  background-color: grey;
   box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #ffffff;
   color: black;
   margin-top: 10rem;
@@ -47,11 +47,19 @@ h1 {
   font-size: 1.275rem;
   /*color: #ffffff;*/
   font-weight: bold;
-  background: rgba(238, 0, 0, 0.897);
+  background: rgba(58, 20, 20, 0.897);
   width: 100%;
  /* display: ruby-text;
   padding: 0.875rem 1rem;
   border-radius: 0.3rem;
   box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
   cursor: pointer;*/
+}
+
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
