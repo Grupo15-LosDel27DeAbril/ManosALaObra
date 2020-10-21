@@ -11,7 +11,7 @@
    <div class="container product-form " style="margin-top: 100px;">
      <div class="row">
          <div class="col-10">
-           <h1 >Realizar Donacion</h1>
+           <h1 >Realizar Donación</h1>
         </div>
        <div class="col">
           <button type="button" class="btn btn-outline-light" (click)="volverAlHome()">
@@ -30,39 +30,39 @@
 
                     <div class=" alert-danger" *ngIf="nombreProducto.invalid && (nombreProducto.dirty || nombreProducto.touched)">
                        <div class="container-error-message"  *ngIf="nombreProducto.errors.required">
-                         <h3>El nombre del producto es obligatorio.</h3>
+                         <h3>El nombre de la donación es obligatorio.</h3>
                        </div>
                        <div class="container-error-message"  *ngIf="nombreProducto.errors.minlength">
-                         <h3> El nombre del producto tiene que ser mayor a 2 caracteres.</h3>
+                         <h3> El nombre de la donación debe ser mayor a 2 caracteres.</h3>
                        </div>
                     </div>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label> Categoria </label>
+                  <label> Categoría </label>
                   <input type="text"  class="form-control" formControlName="categoria">
 
                   <div class="alert-danger" *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
                     <div class="container-error-message"  *ngIf="categoria.errors.required">
-                      <h3>La categoria del producto es obligatoria.</h3>
+                      <h3>La categoría de la donación es obligatoria.</h3>
                     </div>
                     <div class="container-error-message"  *ngIf="categoria.errors.minlength">
-                      <h3> La categoria del producto tiene que ser mayor a 2 caracteres.</h3>
+                      <h3> La categoría de la donación debe ser mayor a 2 caracteres.</h3>
                     </div>
                   </div>
 
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label> Descripcion </label>
+                    <label> Descripción </label>
                     <input type="text"  class="form-control" formControlName="descripcion">
 
                     <div class="alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
                       <div class="container-error-message"  *ngIf="descripcion.errors.required">
-                         <h3>La descripcion del producto es obligatoria.</h3>
+                         <h3>La descripción de la donación es obligatoria.</h3>
                        </div>
                        <div class="container-error-message"  *ngIf="descripcion.errors.minlength">
-                         <h3> La descripcion del producto tiene que ser mayor a 2 caracteres.</h3>
+                         <h3> La descripción de la donación debe ser mayor a 2 caracteres.</h3>
                        </div>
                     </div>
 
@@ -98,10 +98,10 @@
 
                     <div class="alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
                       <div class="container-error-message"  *ngIf="imagen.errors.required">
-                         <h3>La imagen del producto es obligatoria.</h3>
+                         <h3>La imagen de la donación es obligatoria.</h3>
                       </div>
                       <div class="container-error-message"  *ngIf="imagen.errors.minlength">
-                         <h3> La imagen del producto tiene que ser mayor a 5 caracteres.</h3>
+                         <h3> La url de la imagen de la donación debe ser mayor a 5 caracteres.</h3>
                       </div>
                     </div>
 
@@ -109,7 +109,7 @@
 
 
                 <!--<h1> Ubicación de recolección </h1>-->
-              <label>Ubicacion de recoleccion</label>
+              <label>Ubicación de recolección</label>
                 <div class="form-group col-md-6">
                   <div id="mapa-mapbox"></div>
                 </div>

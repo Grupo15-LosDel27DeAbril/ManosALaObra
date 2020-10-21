@@ -7,21 +7,25 @@
       <div class="col-md-3 mt-4" *ngFor="let producto of productos">
         <div class="card text-center border-dark " style="box-shadow: 0px 0px 9px 4px grey;">
           <div class="card-header">
-              <img src={{producto.imagen}} class="card-img-top" alt="...">
+              <img src={{producto.imagen}} class="card-img-top" alt="no se pudo cargar imagen">
           </div>
           <div class="card-body">
               <h5 class="card-title">{{producto.nombreProducto}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.categoria}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.descripcion}}</h6>
+              <!--<h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Desde: {{producto.fechaPublicacion}} </h6>
+              <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Hasta: {{producto.validoHasta}} </h6>-->
+
+          </div>
+          <div class="card-footer">
               <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Desde: {{producto.fechaPublicacion}} </h6>
               <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Hasta: {{producto.validoHasta}} </h6>
-
           </div>
           <div class="card-footer text-muted">
 
             <button class="btn btn-success" (click)="ubicacionEnMapa(producto)"> Punto de recolección </button>
             <p></p><!-- espacio entre botones-->
-            <button class="btn btn-primary"  (click)="completarFormulario()" >solicitar donacion</button>
+            <button class="btn btn-primary"  (click)="completarFormulario()" >solicitar donación</button>
 
           </div>
 
