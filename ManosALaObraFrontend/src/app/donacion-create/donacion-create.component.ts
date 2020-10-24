@@ -33,6 +33,7 @@ export class DonacionCreateComponent implements OnInit{
 
 
     ngOnInit() {
+        this.productoForm.get('emailDonante').setValue(this.dataService.userData.email);
         (Mapboxgl as any).accessToken = environment.mapboxKey;
         this.mapa = new Mapboxgl.Map({
           container: 'mapa-mapbox',
@@ -82,10 +83,13 @@ export class DonacionCreateComponent implements OnInit{
             nombreProducto: new FormControl('',[Validators.required,Validators.minLength(2)]),
             categoria: new FormControl('',[Validators.required, Validators.minLength(2)]),
             descripcion: new FormControl('',[Validators.required, Validators.minLength(2)]),
+            emailDonante: new FormControl('',[Validators.required, Validators.email]),
             imagen: new FormControl('',[Validators.required, Validators.minLength(5)]),
             longitude: new FormControl('',[Validators.required]),
             latitude: new FormControl('',[Validators.required]),
-            lugar: new FormControl('',[Validators.required, Validators.minLength(2)])
+            lugar: new FormControl('',[Validators.required, Validators.minLength(2)]),
+            fechaPublicacion: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+            validoHasta: new FormControl('',[Validators.required, Validators.minLength(10), Validators.maxLength(10)]) 
         });
     }
     onResetForm(){
@@ -123,6 +127,18 @@ export class DonacionCreateComponent implements OnInit{
     }
     get lugar(){
         return this.productoForm.get('lugar');
+    }
+
+    get fechaPublicacion(){
+        return this.productoForm.get('fechaPublicacion');
+    }
+
+    get validoHasta(){
+        return this.productoForm.get('validoHasta');
+    }
+
+    get emailDonante(){
+        return this.productoForm.get('emailDonante');
     }
 
     public volverAlHome(){

@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -8,6 +9,9 @@ import { DonacionCreateComponent } from './donacion-create/donacion-create.compo
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MapComponent } from './map/map.component';
+/*Modulos para inicio de sesion para redes sociales*/
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 /* modulos para traduccion dinamica*/
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -21,16 +25,21 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 /*modulos para fecha y moneda*/
 //en app.component
 
-export const importsConversor = [
-  BrowserModule,
-  FormsModule
-]
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("311052136099-qqf6f12v6pdpt5tfv67lqfe8gdivg920.apps.googleusercontent.com")
+  },
+]);
 
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
     declarations: [
-        importsConversor,
         AppComponent,
+        LoginComponent,
         HomeComponent,
         MainComponent,
         HeaderComponent,
@@ -47,6 +56,7 @@ export const importsConversor = [
       MatPaginatorModule,
       ReactiveFormsModule,
       CommonModule,
+      SocialLoginModule,
       //NgbModule,
         TranslateModule.forRoot(),
         HttpClientModule,
@@ -59,6 +69,10 @@ export const importsConversor = [
             }),
         BrowserAnimationsModule
     ],
+    providers: [ {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

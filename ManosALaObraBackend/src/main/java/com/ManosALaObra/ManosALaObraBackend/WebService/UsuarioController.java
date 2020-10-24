@@ -30,4 +30,19 @@ public class UsuarioController {
         // Busco y devuelvo el usuario con el id correspondiente traido por parámetro
         return usuarioService.findById(id);
     }
+
+    @CrossOrigin
+    @PostMapping("api/usuario/loginWithGoogle")
+    public Usuario loginUserWithGoogle(@RequestBody UsuarioLogin user){
+        // Primero se busca al usuario que coincida con el mail de google logueado, si no existe
+        // se lo crea y se lo devuelve para que después el frontend se encargue de gestionar los datos.
+        return usuarioService.loguearWithGoogle(user);
+    }
+
+    @CrossOrigin
+    @PutMapping("/api/usuario/solicitarDonacion/{id}")
+    public Usuario solicitarDonacionSubida(@RequestBody String email, @PathVariable Long id){
+       return usuarioService.solicitarDonacion(email,id);
+    }
+
 }

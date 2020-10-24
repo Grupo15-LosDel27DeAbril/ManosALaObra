@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     ngOnInit(){
         this.api.getDonacionesAPI$().subscribe(resp => { this.productos = resp; this.data.productos = resp});
         console.log("Save button is clicked!", this.data.productos);
+        console.log("El usuario logueado es: ", this.data.userData);
 
     }
 
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
         this.route.navigateByUrl('map');
     }
 
-    public completarFormulario(){
-         this.route.navigateByUrl('form');
+    public completarFormulario(producto){
+         console.log("El email del que hizo esta donacion es: ", producto.emailDonante);
+         this.appComp.solicitarLaDonacion(producto.emailDonante);
     }
 }

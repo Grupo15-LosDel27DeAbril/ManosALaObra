@@ -13,12 +13,16 @@
               <h5 class="card-title">{{producto.nombreProducto}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.categoria}}</h6>
               <h6 class="card-subtitle mb-2 text-muted">{{producto.descripcion}}</h6>
+              <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Desde: {{producto.fechaPublicacion}} </h6>
+              <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Hasta: {{producto.validoHasta}} </h6>
 
           </div>
           <div class="card-footer text-muted">
+
             <button class="btn btn-success" (click)="ubicacionEnMapa(producto)"> Punto de recolección </button>
             <p></p><!-- espacio entre botones-->
-            <button class="btn btn-primary"  (click)="completarFormulario()" >solicitar donacion</button>
+            <button class="btn btn-primary"  (click)="completarFormulario(producto)" >solicitar donacion</button>
+
           </div>
 
         </div>
