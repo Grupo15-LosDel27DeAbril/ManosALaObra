@@ -22,8 +22,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-/*modulos para fecha y moneda*/
-//en app.component
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 let config = new AuthServiceConfig([
   {
@@ -45,7 +44,8 @@ export function provideConfig() {
         HeaderComponent,
         FormComponent,
         DonacionCreateComponent,
-        MapComponent
+        MapComponent,
+        ImageUploadComponent
     ],
     imports: [
       BrowserModule,
