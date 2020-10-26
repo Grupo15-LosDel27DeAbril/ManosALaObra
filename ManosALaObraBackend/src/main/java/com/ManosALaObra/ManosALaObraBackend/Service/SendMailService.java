@@ -20,6 +20,7 @@ public class SendMailService {
 
     public void sendMail(String from, String to, String subject, String body){
         /* metodo que se encarga de enviar el mail. */
+        /*
         javaMailSender = new JavaMailSender() {
             @Override
             public MimeMessage createMimeMessage() {
@@ -60,7 +61,7 @@ public class SendMailService {
             public void send(SimpleMailMessage... simpleMessages) throws MailException {
 
             }
-        };
+        };*/
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(from);
         mailMessage.setTo(to);

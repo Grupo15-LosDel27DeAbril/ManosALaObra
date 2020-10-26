@@ -121,7 +121,7 @@ public class UsuarioService {
                 + "," + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
-        sendMailService.sendMail(user.getEmail(), mail, titulo, body);
+        sendMailService.sendMail("chinovirtualv2.0@gmail.com", mail, titulo, body);
     }
 
 }
