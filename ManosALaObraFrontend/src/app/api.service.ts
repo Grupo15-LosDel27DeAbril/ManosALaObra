@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { observable, Observable } from 'rxjs';
 import { Producto } from './producto';
 import { UsuarioData } from './usuarioData';
 import { App } from './app';
+import { Registro } from './registro';
+//import { observeOn } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -35,6 +37,19 @@ export class ApiService {
 
     realizarSolicitudDeDonacion(userData: UsuarioData, emailDonante: string){
         return this.http.put<UsuarioData>(this.urlLocal+'/usuario/solicitarDonacion/'+userData.id,emailDonante,{observe:'response'});
+    }
+
+    realizarSumatoriaDeMail(userData: UsuarioData, id: number, idApp: any): Observable<UsuarioData>{
+        return this.http.put<UsuarioData>(this.urlLocal+'agregarMail/'+userData.id+"/"+id+"/"+idApp,{observe:'response'});
+    }
+
+    getRegistrosAPI$(): Observable<Registro[]>{
+        /* Busco todos los registros cargados en el sistema. */
+        return this.http.get<Registro[]>(this.urlLocal+'registros');
+    }
+
+    agregarRegistroAApi(registro: Registro, idUser: any, idApp: any): Observable<HttpResponse<UsuarioData>>{
+        return this.http.post<UsuarioData>(this.urlLocal+"agregarRegistro/"+idUser+"/"+idApp, registro ,{observe:'response'});
     }
     
 }

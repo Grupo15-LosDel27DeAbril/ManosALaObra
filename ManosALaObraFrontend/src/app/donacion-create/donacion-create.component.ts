@@ -4,6 +4,7 @@ import { Producto } from '../producto';
 import { Router, RouterLink, NavigationEnd } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
+import { ApiService } from '../api.service';
 import { Injectable} from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
 import { environment } from '../../enviroments/environment';
@@ -27,7 +28,7 @@ export class DonacionCreateComponent implements OnInit{
     lng: number;
     lat: number;
 
-    constructor(public router: Router, public appComp: AppComponent, public dataService: DataService){
+    constructor(public router: Router, public appComp: AppComponent, public dataService: DataService, public api: ApiService){
         this.productoForm = this.createFormGroup();
     }
 

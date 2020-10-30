@@ -71,4 +71,8 @@ public class Usuario {
     public void donarProducto(Producto producto, App app){
         app.agregarDonacion(producto);
     }
+
+    public void realizarRegistro(Registro registro, App app){
+        app.agregarRegistro(registro);
+    }
 }
