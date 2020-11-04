@@ -23,7 +23,10 @@ import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { from } from 'rxjs';
-import { StateComponent } from './state/state.component'
+import { StateComponent } from './state/state.component';
+import { MyDonationsComponent } from './my-donations/my-donations.component'
+import { EmailDonationsComponent } from './email-donations/email-donations.comonent';
+import { ConfirmedRequestComponent } from './confirmed-request/confirmed-request.component';
 /*modulos para fecha y moneda*/
 //en app.component
 
@@ -46,7 +49,10 @@ export function provideConfig() {
         MainComponent,
         HeaderComponent,
         FormComponent,
+        ConfirmedRequestComponent,
         StateComponent,
+        MyDonationsComponent,
+        EmailDonationsComponent,
         DonacionCreateComponent,
         MapComponent
     ],

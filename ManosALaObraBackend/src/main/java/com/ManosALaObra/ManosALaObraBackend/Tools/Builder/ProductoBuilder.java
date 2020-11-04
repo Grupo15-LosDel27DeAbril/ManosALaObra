@@ -21,12 +21,14 @@ public class ProductoBuilder {
     private String emailDonante = "sin email";
     private List<Mail> emailsSolicitantes = new ArrayList<Mail>();
     private String estado = "sin estado";
+    private long idDonante = 0;
+    private boolean fueDonado = false;
 
 
 
     public Producto build() {
         long identificador = new Long(1);
-        Producto producto = new Producto(nombreProducto, descripcion, imagen, categoria, identificador, latitude, longitude, lugar, fechaPublicacion, fechaLimite, emailDonante, emailsSolicitantes, estado);
+        Producto producto = new Producto(nombreProducto, descripcion, imagen, categoria, identificador, latitude, longitude, lugar, fechaPublicacion, fechaLimite, emailDonante, emailsSolicitantes, estado, idDonante, fueDonado);
         return producto;
     }
 
@@ -87,6 +89,16 @@ public class ProductoBuilder {
 
     public ProductoBuilder withEstado(String anState){
         estado = anState;
+        return this;
+    }
+
+    public ProductoBuilder withIdDonante(long anId){
+        idDonante = anId;
+        return this;
+    }
+
+    public ProductoBuilder withFueDonado(boolean anBoolean){
+        fueDonado = anBoolean;
         return this;
     }
 }

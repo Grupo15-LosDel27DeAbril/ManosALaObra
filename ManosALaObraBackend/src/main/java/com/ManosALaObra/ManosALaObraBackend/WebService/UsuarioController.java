@@ -45,4 +45,16 @@ public class UsuarioController {
        return usuarioService.solicitarDonacion(email,id);
     }
 
+    @CrossOrigin
+    @PutMapping("/api/usuario/confirmarDonacion/{idUser}/{idProd}")
+    public Usuario confirmarDonacionSubida(@RequestBody String mail, @PathVariable Long idUser, @PathVariable Long idProd){
+        return usuarioService.confirmarDonacion(mail,idUser,idProd);
+    }
+
+    @CrossOrigin
+    @PutMapping("/api/usuario/eliminarDonacion/{idUser}/{idProd}")
+    public Usuario eliminarDonacionSubida(@PathVariable Long idUser, @PathVariable Long idProd){
+        return usuarioService.eliminarDonacion(idUser, idProd);
+    }
+
 }

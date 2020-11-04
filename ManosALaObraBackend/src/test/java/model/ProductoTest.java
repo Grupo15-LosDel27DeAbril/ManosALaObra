@@ -29,6 +29,6 @@ public class ProductoTest extends TestCase {
         Producto producto = productoBuilder.build();
         assertEquals(producto.getValidoHasta().getYear(), 2020);
         assertEquals(producto.getValidoHasta().getMonth().getValue(), 10);
-        assertEquals(producto.getValidoHasta().getDayOfMonth(), 27);
+        assertEquals(producto.getValidoHasta().getDayOfMonth(), 31);
     }
 }

@@ -31,5 +31,7 @@ public class UsuarioTest extends TestCase {
         Usuario usuario = UsuarioFactory.anyUsuario();
         usuario.donarProducto(ProductoFactory.createWithNombre("Banana"), app);
         assertEquals(app.getProductos().size(), 1);
+        assertEquals(usuario.getProductos().size(), 1);
+        assertEquals(usuario.getProductos().get(0).getNombreProducto(), "Banana");
     }
 }

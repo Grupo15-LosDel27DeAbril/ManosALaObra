@@ -35,4 +35,9 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
+
+  myDonations(){
+    this.data.productosActualesDeUsuarioLogueado = this.data.userData.productos;
+  }
+
 }

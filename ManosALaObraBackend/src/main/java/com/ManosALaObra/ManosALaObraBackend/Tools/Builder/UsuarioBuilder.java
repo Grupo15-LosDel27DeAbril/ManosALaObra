@@ -1,6 +1,10 @@
 package com.ManosALaObra.ManosALaObraBackend.Tools.Builder;
 
+import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
 import com.ManosALaObra.ManosALaObraBackend.Model.Usuario;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class UsuarioBuilder {
@@ -9,9 +13,10 @@ public class UsuarioBuilder {
     private String domicilio = "";
     private String email = "";
     private String password = "";
+    private List<Producto> productos = new ArrayList<Producto>();
 
     public Usuario build() {
-        Usuario user = new Usuario(nombreUsuario, domicilio, email, password);
+        Usuario user = new Usuario(nombreUsuario, domicilio, email, password, productos);
         return user;
     }
 
@@ -32,6 +37,11 @@ public class UsuarioBuilder {
 
     public UsuarioBuilder withPassword(String password){
         this.password = password;
+        return this;
+    }
+
+    public UsuarioBuilder withProductos(final List<Producto> aList){
+        this.productos = aList;
         return this;
     }
 

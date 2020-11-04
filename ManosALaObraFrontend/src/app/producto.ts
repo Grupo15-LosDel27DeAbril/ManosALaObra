@@ -11,10 +11,11 @@ export interface Producto{
     latitude: number,
     longitude: number,
     lugar: string,
-    email: string,
     fechaPublicacion: DatePipe,
     validoHasta: DatePipe,
     emailDonante: string,
+    estado: string,
+    idDonante: number,
     emailsSolicitantes: Mail[],
-    estado: string
+    fueDonado: boolean,
 }

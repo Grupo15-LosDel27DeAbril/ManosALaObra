@@ -11,6 +11,10 @@ import com.ManosALaObra.ManosALaObraBackend.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -55,6 +59,15 @@ public class ProductoService {
     public void deleteAll(){
         productoRepository.deleteAll();
     }
+
+    public Producto modificarEstado(Long idProd) {
+        return productoRepository.findById(idProd).map(
+                prod ->{
+                    prod.setEstado("Finalizado");
+                    return this.save(prod);
+                }).get();
+    }
+
 
     /*
     public Producto agregarMailSolicitante(Usuario usuario, Long idProd, App app) {

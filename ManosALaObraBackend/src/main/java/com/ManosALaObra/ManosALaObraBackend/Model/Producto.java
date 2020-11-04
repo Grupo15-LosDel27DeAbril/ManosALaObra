@@ -28,11 +28,12 @@ public class Producto {
     private LocalDate validoHasta;
     private String emailDonante;
     private String estado;
+    private long idDonante;
 
     @OneToMany(targetEntity = Mail.class)
     @JoinColumn(name="ms_fk",referencedColumnName = "id")
     private List<Mail> emailsSolicitantes;
-
+    private boolean fueDonado;
 
     public String getNombreProducto() {
         return nombreProducto;
@@ -122,6 +123,14 @@ public class Producto {
 
     public void setEstado(String estado) { this.estado = estado; }
 
+    public long getIdDonante() { return idDonante; }
+
+    public void setIdDonante(long idDonante) { this.idDonante = idDonante; }
+
+    public boolean isFueDonado() { return fueDonado; }
+
+    public void setFueDonado(boolean fueDonado) { this.fueDonado = fueDonado; }
+
     public String imprimirFecha(LocalDate unaFecha){
         LocalDate dateObj = unaFecha;
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
@@ -138,7 +147,7 @@ public class Producto {
         this.fechaPublicacion = LocalDate.now();
     }
 
-    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Double latitude, Double longitude, String lugar, LocalDate desde, LocalDate hasta, String emailDonante, List<Mail> emailsSolicitantes, String estado){
+    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Double latitude, Double longitude, String lugar, LocalDate desde, LocalDate hasta, String emailDonante, List<Mail> emailsSolicitantes, String estado, long idDonante, boolean fueDonado){
         this.setNombreProducto(nombreProducto);
         this.setCategoria(categoria);
         this.setDescripcion(descripcion);
@@ -151,9 +160,11 @@ public class Producto {
         this.setEmailDonante(emailDonante);
         this.setEmailsSolicitantes(emailsSolicitantes);
         this.setEstado(estado);
+        this.setIdDonante(idDonante);
+        this.setFueDonado(fueDonado);
     }
 
-    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, long id, Double latitude, Double longitude, String lugar, LocalDate desde, LocalDate hasta, String emailDonante, List<Mail> emailsSolicitantes, String estado) {
+    public Producto(String nombreProducto, String descripcion, String imagen, String categoria, long id, Double latitude, Double longitude, String lugar, LocalDate desde, LocalDate hasta, String emailDonante, List<Mail> emailsSolicitantes, String estado, long idDonate, boolean fueDonado) {
         this.setNombreProducto(nombreProducto);
         this.setCategoria(categoria);
         this.setDescripcion(descripcion);
@@ -167,6 +178,8 @@ public class Producto {
         this.setEmailDonante(emailDonante);
         this.setEmailsSolicitantes(emailsSolicitantes);
         this.setEstado(estado);
+        this.setIdDonante(idDonate);
+        this.setFueDonado(fueDonado);
     }
 
     public void agregarMail(Mail mail){

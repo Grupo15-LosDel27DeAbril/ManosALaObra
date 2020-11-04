@@ -102,12 +102,45 @@ export class AppComponent {
                         err => console.log(err));
    }
 
+   public confirmarLaDonacion(email: string, producto: Producto){
+      this.api.realizarConfirmacionDeDonacion(this.data.getuserData(), this.data.productoActual, email)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                  
+                                  },
+                        err => console.log(err));
+   }
+
    public agregarMailSolicitante(id: number){
       this.api.realizarSumatoriaDeMail(this.data.getuserData(), id, 1)
               .subscribe(resp => { const data = resp;
                                    console.log(data);
                                  },
                         err => console.log(err));
+   }
+
+   public cambiarEstado(id: number){
+      this.api.cambiarEstadoDonacion(id)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                         err => console.log(err));
+   }
+
+   public eliminarDonacion(idUser: number, idProd: number){
+     this.api.eliminarDonacionDeUsuario(idUser,idProd)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+                                },
+                        err => console.log(err));
+   }
+
+   public cambiarEstadoFueDonado(id:number){
+      this.api.cambiarEstadoDonacionAFueDonado(this.data.getuserData(),id,1)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                         err => console.log(err));
    }
    
 }

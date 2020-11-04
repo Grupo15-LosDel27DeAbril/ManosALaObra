@@ -32,8 +32,21 @@ public class ProductoController {
 
     @CrossOrigin
     @PutMapping("/api/agregarMail/{idUser}/{idProd}/{idApp}")
-    public Usuario newEmailSolicitante(@PathVariable Long idUser, @PathVariable Long idProd, @PathVariable Long idApp){
+    public Producto newEmailSolicitante(@PathVariable Long idUser, @PathVariable Long idProd, @PathVariable Long idApp){
         App app = appService.findById(idApp);
-        return usuarioService.agregarMailSolicitante(idUser, idProd, app);
+        return usuarioService.setearMail(idUser, idProd, app);
+    }
+
+    @CrossOrigin
+    @PutMapping("/api/modificarFueDonado/{idUser}/{idProd}/{idApp}")
+    public Producto modificarDonacionSubida(@PathVariable Long idUser, @PathVariable Long idProd, @PathVariable Long idApp){
+        App app = appService.findById(idApp);
+        return usuarioService.modificarFueDonado(idUser,idProd, app);
+    }
+
+    @CrossOrigin
+    @PutMapping("/api/modificarEstado/{idProd}")
+    public Producto modificarEstadoDeDonacion(@PathVariable Long idProd){
+        return productoService.modificarEstado(idProd);
     }
 }

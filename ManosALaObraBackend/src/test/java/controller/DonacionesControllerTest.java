@@ -83,7 +83,7 @@ public class DonacionesControllerTest {
 
         Long id = 1L;
 
-        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 13), LocalDate.of(2020, 10, 23 ), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado");
+        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 13), LocalDate.of(2020, 10, 23 ), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado", 0, false);
 
         given(productoService.findById(id)).willReturn(producto1);
 
@@ -100,10 +100,10 @@ public class DonacionesControllerTest {
         Long idUser = 1L;
         Long idApp = 1L;
 
-        Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787");
+        Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787", new ArrayList<Producto>());
         //usuario.setId(1L);
 
-        Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata", LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 20), usuario.getEmail(), new ArrayList<Mail>(), "sin estado");
+        Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata", LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 20), usuario.getEmail(), new ArrayList<Mail>(), "sin estado", 0, false);
         //producto.setId(1L);
 
         App app = new App(new ArrayList<Producto>(), new ArrayList<Registro>());
@@ -124,7 +124,7 @@ public class DonacionesControllerTest {
 
         String found = "Arroz";
 
-        Producto producto1 = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no parecedero", -34.746174, -58.241824, "Frigorifico", LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 22), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado");
+        Producto producto1 = new Producto("Arroz", "3 paquetes de arroz de 1 kg c/u", "https://s1.eestatic.com/2019/01/11/ciencia/nutricion/Nutricion_367724011_112039587_1706x1280.jpg", "Alimento no parecedero", -34.746174, -58.241824, "Frigorifico", LocalDate.of(2020, 10, 12), LocalDate.of(2020, 10, 22), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado", 0, false);
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
 
@@ -141,7 +141,7 @@ public class DonacionesControllerTest {
 
         String found = "Naranjas";
 
-        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 11), LocalDate.of(2020, 10, 25), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado");
+        Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 11), LocalDate.of(2020, 10, 25), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado", 0, false);
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
 
