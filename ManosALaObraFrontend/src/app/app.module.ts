@@ -23,6 +23,10 @@ import { HeaderComponent } from './header/header.component';
 import { FormComponent } from './form/form.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { from } from 'rxjs';
+import { StateComponent } from './state/state.component'
+/*modulos para fecha y moneda*/
+//en app.component
 
 let config = new AuthServiceConfig([
   {
@@ -43,6 +47,7 @@ export function provideConfig() {
         MainComponent,
         HeaderComponent,
         FormComponent,
+        StateComponent,
         DonacionCreateComponent,
         MapComponent,
         ImageUploadComponent

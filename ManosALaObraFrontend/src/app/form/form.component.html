@@ -1,41 +1,20 @@
-<!--<p>form works!</p>-->
-<app-header></app-header>
 
 <body>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <div class="row"> ... </div>
+  <h1 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">
+    Su solicitud fue realizada. Se enviará un mail al donante informando de su solicitud.
+    No podrá volver a solicitar esta donación. Muchas gracias!
+  </h1>
 
-<div class="container p-destacados" style="margin-top: 70px;">
-  <div class="text-light">
-  <h3 >solicitar donacion</h3>
-  <p>por favor complete sus datos y en breve el/la donante se pondra en contacto con usted</p>
-  </div>
-</div>
-<div class="container p-destacados" style="margin-top: 70px;">
-<form action="/my-handling-form-page" method="post">
-
-  <ul>
-  <li>
-    <label for="name">Nombre:</label>
-  </li>
-    <ul>
-    <input type="text" id="name" name="user_name">
-  </ul>
-  <li>
-    <label for="mail">Correo electrónico:</label>
-  </li>
-    <ul>
-    <input type="email" id="mail" name="user_mail">
-  </ul>
-  <li>
-    <label for="msg">Mensaje:</label>
-  </li>
-    <ul>
-    <textarea id="msg" name="user_message"></textarea>
-  </ul>
- </ul>
-</form>
-  </div>
-<div class="card-footer text-muted">
-  <button class="btn btn-primary"   >enviar</button>
-
-</div>
+  <div class="col">
+    <button type="button" class="btn btn-outline-dark" (click)="volverAlHome()">
+       <small >Volver al Home</small><i class="fa fa-angle-double-left"></i>
+    </button>
+ </div>
 </body>

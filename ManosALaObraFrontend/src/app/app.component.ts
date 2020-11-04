@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
 import { Producto } from './producto';
+import { Registro } from './registro';
 import { DataService } from './data.service';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioData } from './usuarioData';
@@ -38,6 +39,10 @@ export class AppComponent {
        return this.data.productos
    }
 
+   public getRegistros(): Array<{idProducto,emailSolicitante,emailDonante}>{
+        return this.data.registros
+   }
+
    handleError(error) {
     let errorMessage = '';
      errorMessage = `Error: ${error.error.message}`;
@@ -55,6 +60,16 @@ export class AppComponent {
                            });
    }
 
+   public agregarRegistro(registro: Registro){
+     this.api.agregarRegistroAApi(registro, this.data.getuserData().id, 1)
+         .subscribe(resp => { const data = resp.body
+                              console.log(data.nombreUsuario);
+                            },
+                            err => {
+                              console.log(err);
+                              this.handleError(err);
+                            });
+   }
    public getUserData(idUser: string){
      /* Se consulta a la API y se obtiene los datos del usuario */
      this.api.getUserData$(idUser)
@@ -75,6 +90,23 @@ export class AppComponent {
                               this.getUserData(data.id.toString()); 
                             },
                     err => console.log(err));
+   }
+
+   public solicitarLaDonacion(emailDonante: string){
+     this.api.realizarSolicitudDeDonacion(this.data.getuserData(), emailDonante)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+
+                                },
+                        err => console.log(err));
+   }
+
+   public agregarMailSolicitante(id: number){
+      this.api.realizarSumatoriaDeMail(this.data.getuserData(), id, 1)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                        err => console.log(err));
    }
    
 }

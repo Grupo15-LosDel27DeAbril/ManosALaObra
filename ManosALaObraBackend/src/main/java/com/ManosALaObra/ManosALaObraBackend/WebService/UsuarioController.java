@@ -39,4 +39,9 @@ public class UsuarioController {
         return usuarioService.loguearWithGoogle(user);
     }
 
+    @CrossOrigin
+    @PutMapping("/api/usuario/solicitarDonacion/{id}")
+    public Usuario solicitarDonacionSubida(@RequestBody String email, @PathVariable Long id){
+       return usuarioService.solicitarDonacion(email,id);
+    }
 }

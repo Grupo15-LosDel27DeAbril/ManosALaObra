@@ -7,11 +7,14 @@ import com.ManosALaObra.ManosALaObraBackend.Repositories.ProductoRepository;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.AppRepository;
 import com.ManosALaObra.ManosALaObraBackend.Tools.Builder.UsuarioBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
@@ -27,6 +30,12 @@ public class UsuarioService {
     private AppRepository appRepository;
     @Autowired
     private AppService appService;
+    @Autowired
+    private SendMailService sendMailService;
+    @Autowired
+    private MailService mailService;
+    @Autowired
+    private RegistroService registroService;
 
     @Transactional
     public Usuario save(Usuario model) { return this.usuarioRepository.save(model);}
@@ -60,9 +69,23 @@ public class UsuarioService {
         return usuarioRepository.findById(idUser).map(
                 user ->{
                     newProducto.setEmailDonante(user.getEmail());//me llevo el email de quien lo publico
+                    newProducto.setEstado("Disponible");
                     productoService.save(newProducto);
                     appService.save(app);
                     user.donarProducto(newProducto, app);
+                    return usuarioRepository.save(user);
+                }
+        ).get();
+    }
+
+    public Usuario agregarRegistroASistema(Registro newRegistro, Long idUser, App app) {
+
+        return usuarioRepository.findById(idUser).map(
+                user -> {
+                    //newRegistro.setEmailSolicitante(user.getEmail());
+                    registroService.save(newRegistro);
+                    appService.save(app);
+                    user.realizarRegistro(newRegistro, app);
                     return usuarioRepository.save(user);
                 }
         ).get();
@@ -89,5 +112,55 @@ public class UsuarioService {
     }
 
 
+    public Usuario solicitarDonacion(String mail, Long idUser) {
+        return usuarioRepository.findById(idUser).map(
+                user ->{
+                    /* Se deberia enviar un mail. */
+                    enviarMail(user, mail);
+
+                    return usuarioRepository.save(user);
+                }).get();
+    }
+
+    private void enviarMail(Usuario user, String mail) {
+        /* Se gestiona el mail que le llegará a la persona que realizó la donacion. */
+        gestionarMail(user, mail);
+    }
+
+
+    private void gestionarMail(Usuario user, String mail) {
+        String body = "Tu donacion ha sido solicitada por el usuario con mail: " + user.getNombreUsuario()+".\n";
+        String titulo = "Solicitud de donación";
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth(),
+                     LocalTime.now().getHour(), LocalTime.now().getMinute());
+
+        body = body.concat("La solicitud fue realizada en fecha y hora: ") + calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR)
+                + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
+
+        body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
+        sendMailService.sendMail("chinovirtualv2.0@gmail.com", mail, titulo, body);
+    }
+
+
+    @Transactional
+    public Usuario agregarMailSolicitante(Long idUser, Long idProd, App app) {
+
+        Usuario res = usuarioRepository.findById(idUser).get();
+        appService.save(app);
+        for(Producto p: app.getProductos()){
+            if(p.getId() == idProd){
+                Mail mail = new Mail(res.getNombreUsuario());
+                mailService.save(mail);
+                List<Mail> mails = p.getEmailsSolicitantes();
+                mails.add(mail);
+                p.setEmailsSolicitantes(mails);
+                p.setEstado("Pendiente");
+                productoService.save(p);
+            }
+        }
+        return res;
+    }
 }
+
 

@@ -68,6 +68,22 @@
 
                 </div>
 
+
+                <div class="form-group col-md-12">
+                  <label> Email Donante </label>
+                  <input type="text"  class="form-control" formControlName="emailDonante">
+
+                  <div class="alert-danger" *ngIf="emailDonante.invalid && (emailDonante.dirty || emailDonante.touched)">
+                    <div class="container-error-message"  *ngIf="emailDonante.errors.required">
+                       <h3> Su dirección de email es obligatoria.</h3>
+                     </div>
+                     <div class="container-error-message"  *ngIf="emailDonante.errors.email">
+                       <h3> Debe ingresar una diercción de email válida.</h3>
+                     </div>
+                  </div>
+
+              </div>
+
                 <div class="form-group col-md-1.5">
                   <label> Desde </label>
                   <input type="date"  class="form-control" formControlName="fechaPublicacion">
@@ -138,7 +154,22 @@
                      <h3> El lugar de entrega tiene que ser mayor a 2 caracteres.</h3>
                   </div>
                 </div>
-              </div>
+               </div>
+               -->
+
+               <div class="form-group col-md-6">
+                <label> Lugar </label>
+                <input type="text"  class="form-control" formControlName="lugar">
+
+                <div class="alert-danger" *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+                  <div class="container-error-message"  *ngIf="lugar.errors.required">
+                     <h3> El lugar de entrega es obligatorio.</h3>
+                   </div>
+                   <div class="container-error-message"  *ngIf="lugar.errors.minlength">
+                     <h3> El lugar de entrega tiene que ser mayor a 2 caracteres.</h3>
+                   </div>
+                </div>
+
             </div>
             <br>
             <br>

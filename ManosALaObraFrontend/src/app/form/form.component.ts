@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppComponent } from '../app.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,9 +11,13 @@ import { AppComponent } from '../app.component';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
+
+  public volverAlHome(){
+    this.router.navigateByUrl('home');
+}
 
 }

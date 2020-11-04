@@ -1,5 +1,6 @@
 import { ɵLocaleDataIndex } from '@angular/core';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { Mail } from './mail';
 
 export interface Producto{
     id: number,
@@ -11,6 +12,9 @@ export interface Producto{
     longitude: number,
     lugar: string,
     email: string,
-    fechaPublicacion: DatePipe;
-    validoHasta: DatePipe
+    fechaPublicacion: DatePipe,
+    validoHasta: DatePipe,
+    emailDonante: string,
+    emailsSolicitantes: Mail[],
+    estado: string
 }

@@ -1,5 +1,6 @@
 package model;
 
+import com.ManosALaObra.ManosALaObraBackend.Model.Mail;
 import com.ManosALaObra.ManosALaObraBackend.Tools.Builder.AppBuilder;
 import com.ManosALaObra.ManosALaObraBackend.Model.App;
 import com.ManosALaObra.ManosALaObraBackend.Model.Usuario;
