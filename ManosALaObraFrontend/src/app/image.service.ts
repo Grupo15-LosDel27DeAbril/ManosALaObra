@@ -20,16 +20,7 @@ export class ImageService {
 
     formData.append('image', image);
 
-    //return this.http.post<File>('/api/v1/image-upload', formData);
-    //return this.http.post<File>(this.urlLocal+"/api/v1/image-upload",formData,{observe: 'response'});
-    const options = {
-      headers: new HttpHeaders().set('Authorization', this.loopBackAuth.accessTokenId),
-      params: params,
-      reportProgress: true,
-      withCredentials: true,
-  }
-  
-  this.http.post(this.urlLocal+'/FileUploads/fileupload', formData, options)
-
+    return this.http.post<File>(this.urlLocal+"/api/v1/image-upload",formData,{observe: 'response'});
+    
   }
 }

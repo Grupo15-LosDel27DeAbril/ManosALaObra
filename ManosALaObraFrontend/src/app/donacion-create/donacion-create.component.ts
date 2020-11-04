@@ -138,13 +138,10 @@ export class DonacionCreateComponent implements OnInit{
         return this.productoForm.get('validoHasta');
     }
 
-<<<<<<< HEAD
-=======
     get emailDonante(){
         return this.productoForm.get('emailDonante');
     }
 
->>>>>>> entrega3
     public volverAlHome(){
         this.router.navigateByUrl('home');
     }

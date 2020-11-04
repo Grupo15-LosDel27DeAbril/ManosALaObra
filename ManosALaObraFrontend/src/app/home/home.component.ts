@@ -34,11 +34,8 @@ export class HomeComponent implements OnInit {
         this.api.getRegistrosAPI$().subscribe(resp => {this.registros = resp; this.data.registros = resp});
         console.log("Save button is clicked!", this.data.productos);
         console.log("El usuario logueado es: ", this.data.userData);
-<<<<<<< HEAD
 
-=======
         console.log("Los registros son: " , this.data.registros)
->>>>>>> entrega3
     }
 
     public ubicacionEnMapa(producto){
