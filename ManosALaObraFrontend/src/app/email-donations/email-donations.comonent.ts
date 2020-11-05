@@ -24,7 +24,7 @@ export class EmailDonationsComponent implements OnInit{
     }
 
     enviarMailConfirmacion(email){
-        //this.appComp.confirmarLaDonacion(email.mail, this.data.productoActual);
+        this.appComp.confirmarLaDonacion(email.mail, this.data.productoActual);
         this.appComp.cambiarEstado(this.data.productoActual.id);
         this.appComp.eliminarDonacion(this.data.userData.id, this.data.productoActual.id);
         this.route.navigateByUrl('confirmed-request');
