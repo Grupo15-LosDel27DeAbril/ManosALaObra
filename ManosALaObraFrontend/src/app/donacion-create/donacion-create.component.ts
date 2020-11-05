@@ -100,6 +100,7 @@ export class DonacionCreateComponent implements OnInit{
     onSaveForm(){
         if(this.productoForm.valid){
             this.appComp.donarProducto(this.productoForm.value);
+            this.dataService.productosActualesDeUsuarioLogueado = this.dataService.userData.productos;
             this.alert = true;
             this.onResetForm();
             console.log('valid');

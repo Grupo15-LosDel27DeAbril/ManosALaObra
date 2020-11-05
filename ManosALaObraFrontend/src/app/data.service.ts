@@ -21,6 +21,9 @@ export class DataService {
     lugar: String;
     registros: Registro[] = [];
     emailsActuales: Mail[];
+    productosActualesDeUsuarioLogueado: Producto[];
+    emailsActualesEnDonaciones: Mail[];
+    productoActual: Producto;
 
     constructor() {}
 

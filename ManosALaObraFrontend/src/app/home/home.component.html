@@ -26,8 +26,6 @@
             <button class="btn btn-success" (click)="ubicacionEnMapa(producto)"> Punto de recolección </button>
             <p></p><!-- espacio entre botones-->
             <button class="btn btn-primary" (click)="completarFormulario(producto)" [disabled]="condition(producto)">solicitar donacion</button>
-            <p></p><!-- espacio entre botones-->
-            <button class="btn btn-danger" (click)="verEstado(producto)" [disabled]="!esAdministrador(producto)"> Ver estado </button>
           </div>
 
         </div>

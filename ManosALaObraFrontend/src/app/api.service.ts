@@ -39,8 +39,16 @@ export class ApiService {
         return this.http.put<UsuarioData>(this.urlLocal+'/usuario/solicitarDonacion/'+userData.id,emailDonante,{observe:'response'});
     }
 
-    realizarSumatoriaDeMail(userData: UsuarioData, id: number, idApp: any): Observable<UsuarioData>{
-        return this.http.put<UsuarioData>(this.urlLocal+'agregarMail/'+userData.id+"/"+id+"/"+idApp,{observe:'response'});
+    realizarConfirmacionDeDonacion(userData: UsuarioData, producto: Producto, email: string){
+        return this.http.put<UsuarioData>(this.urlLocal+'/usuario/confirmarDonacion/'+userData.id+"/"+producto.id, email,{observe:'response'});
+    }
+
+    realizarSumatoriaDeMail(userData: UsuarioData, id: number, idApp: any): Observable<Producto>{
+        return this.http.put<Producto>(this.urlLocal+'agregarMail/'+userData.id+"/"+id+"/"+idApp,{observe:'response'});
+    }
+
+    cambiarEstadoDonacionAFueDonado(userData: UsuarioData, id: number, idApp: any): Observable<Producto>{
+        return this.http.put<Producto>(this.urlLocal+'modificarFueDonado/'+userData.id+"/"+id+"/"+idApp,{observe:'response'});
     }
 
     getRegistrosAPI$(): Observable<Registro[]>{
@@ -50,6 +58,14 @@ export class ApiService {
 
     agregarRegistroAApi(registro: Registro, idUser: any, idApp: any): Observable<HttpResponse<UsuarioData>>{
         return this.http.post<UsuarioData>(this.urlLocal+"agregarRegistro/"+idUser+"/"+idApp, registro ,{observe:'response'});
+    }
+
+    cambiarEstadoDonacion(idProd: any):Observable<Producto>{
+        return this.http.put<Producto>(this.urlLocal+"modificarEstado/"+idProd,{observe:'response'});
+    }
+
+    eliminarDonacionDeUsuario(idUser: any, idProd: any):Observable<UsuarioData>{
+        return this.http.put<UsuarioData>(this.urlLocal+"/usuario/eliminarDonacion/"+idUser+"/"+idProd,{observe:'response'});
     }
     
 }
