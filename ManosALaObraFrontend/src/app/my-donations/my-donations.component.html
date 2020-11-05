@@ -1,6 +1,6 @@
 
 <body>
-<div class="container " style="margin-top: 140px;">
+<div class="container " style="margin-top: 200px;">
    <div class="card card-cascade narrower"  style="box-shadow: 0px 0px 10px 6px black;">
     <div class="py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
         <div>
@@ -26,6 +26,7 @@
            <tr>
              <th> Donación Solicitada </th>
              <th> </th>
+             <th> </th>
            </tr>
          </thead>
          <tbody>
@@ -34,8 +35,13 @@
             <td> {{ producto.nombreProducto }} </td>
  
             <td>
-             <button class="btn btn-primary" (click)="verSolicitantes(producto)" [disabled]="fueDonado(producto)"> Ver solicitantes </button>
-           </td>
+             <button class="btn btn-primary" (click)="verSolicitantes(producto)" [disabled]="fueDonado(producto)"> Ver solicitantes </button> 
+            </td>
+ 
+            <td> 
+              <button class="btn btn-danger" (click)="cambiarAEstadoEntregado(producto)" [disabled]="!noEsteEntregado(producto)">  Marcar como entregado </button>  
+            </td>
+
  
          </tr>    
          </tbody>

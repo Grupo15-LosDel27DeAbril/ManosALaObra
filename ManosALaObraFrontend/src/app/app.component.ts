@@ -142,6 +142,14 @@ export class AppComponent {
                                  },
                          err => console.log(err));
    }
+
+   public cambiarEstadoEntregado(id:number){
+     this.api.cambiarEstadoDeDonacionAEntregado(id)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+                                },
+                        err => console.log(err));     
+   }
    
 }
 

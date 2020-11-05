@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit {
         for(const data of producto.emailsSolicitantes){
             res = res || data.mail == this.data.userData.email;
             res = res || producto.estado == "Finalizado";
+            res = res || producto.estado == "Entregado";
           }
           return res;
     }

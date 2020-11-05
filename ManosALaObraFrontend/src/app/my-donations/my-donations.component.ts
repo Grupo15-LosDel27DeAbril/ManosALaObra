@@ -34,4 +34,13 @@ export class MyDonationsComponent implements OnInit{
     public fueDonado(producto){
         return producto.fueDonado;
     }
+
+    public cambiarAEstadoEntregado(producto){
+        this.appComp.cambiarEstadoEntregado(producto.id);
+    }
+
+    public noEsteEntregado(producto){
+        var res: Boolean = (producto.estado == "Finalizado" || producto.estado == "Entregado");
+        return res; 
+    }
 }

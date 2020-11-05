@@ -40,16 +40,16 @@
 
                 <div class="form-group col-md-6">
                   <label> Categoria </label>
-                  <input type="text"  class="form-control" formControlName="categoria">
-
-                  <div class="alert-danger" *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
-                    <div class="container-error-message"  *ngIf="categoria.errors.required">
-                      <h3>La categoria del producto es obligatoria.</h3>
-                    </div>
-                    <div class="container-error-message"  *ngIf="categoria.errors.minlength">
-                      <h3> La categoria del producto tiene que ser mayor a 2 caracteres.</h3>
-                    </div>
-                  </div>
+                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" formControlName="categoria">
+                    <option selected>Choose...</option>
+                    <option value="Alimento no perecedero">Alimento no perecedero</option>
+                    <option value="Indumentaria">Indumentaria</option>
+                    <option value="Juguete">Juguete</option>
+                    <option value="Calzado">Calzado</option>
+                    <option value="Objeto recreativo">Objeto recreativo</option>
+                    <option value="Otra categoria">Otra categoria</option> 
+                  </select>
+ 
 
                 </div>
 
