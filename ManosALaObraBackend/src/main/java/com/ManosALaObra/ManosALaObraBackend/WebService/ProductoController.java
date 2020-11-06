@@ -49,4 +49,10 @@ public class ProductoController {
     public Producto modificarEstadoDeDonacion(@PathVariable Long idProd){
         return productoService.modificarEstado(idProd);
     }
+
+    @CrossOrigin
+    @PutMapping("/api/modificarEstadoEntregado/{idProd}")
+    public Producto modificarEstadoDeDonacionAEntregado(@PathVariable Long idProd){
+        return productoService.modificarEstadoEntregado(idProd);
+    }
 }

@@ -161,7 +161,7 @@ public class UsuarioService {
                 + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
-        sendMailService.sendMail("chinovirtualv2.0@gmail.com", mail, titulo, body);
+        sendMailService.sendMail("manosalaobra.27.04@gmail.com", mail, titulo, body);
     }
 
     private void gestionarMailConfirmacion(Producto producto, Usuario user, String mail) {
@@ -176,7 +176,7 @@ public class UsuarioService {
                 + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
-        sendMailService.sendMail("chinovirtualv2.0@gmail.com", mail, titulo, body);
+        sendMailService.sendMail("manosalaobra.27.04@gmail.com", mail, titulo, body);
     }
 
 

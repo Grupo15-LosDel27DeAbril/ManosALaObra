@@ -68,19 +68,11 @@ public class ProductoService {
                 }).get();
     }
 
-
-    /*
-    public Producto agregarMailSolicitante(Usuario usuario, Long idProd, App app) {
+    public Producto modificarEstadoEntregado(Long idProd) {
         return productoRepository.findById(idProd).map(
                 prod ->{
-                    appService.save(app);
-                    usuarioService.save(usuario);
-                    Mail mail = new Mail(usuario.getNombreUsuario());
-                    mailService.save(mail);
-                    prod.agregarMail(mail);
-                    return productoRepository.save(prod);
-                }
-        ).get();
+                    prod.setEstado("Entregado");
+                    return this.save(prod);
+                }).get();
     }
-    */
 }

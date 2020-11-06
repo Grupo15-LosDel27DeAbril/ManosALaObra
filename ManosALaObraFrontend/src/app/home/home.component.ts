@@ -25,61 +25,61 @@ export class HomeComponent implements OnInit {
     productos: Producto[] = [];
     registros: Registro[] = [];
 
-    constructor(private api: ApiService, private http: HttpClient, public appComp: AppComponent, public data: DataService,private route: Router){
+    constructor(private api: ApiService, private http: HttpClient, public appComp: AppComponent, public data: DataService, private route: Router) {
 
     }
 
-    ngOnInit(){
-        this.api.getDonacionesAPI$().subscribe(resp => { this.productos = resp; this.data.productos = resp});
-        this.api.getRegistrosAPI$().subscribe(resp => {this.registros = resp; this.data.registros = resp});
+    ngOnInit() {
+        this.api.getDonacionesAPI$().subscribe(resp => { this.productos = resp; this.data.productos = resp });
+        this.api.getRegistrosAPI$().subscribe(resp => { this.registros = resp; this.data.registros = resp });
         console.log("Save button is clicked!", this.data.productos);
         console.log("El usuario logueado es: ", this.data.userData);
-
-        console.log("Los registros son: " , this.data.registros)
+        console.log("Los registros son: ", this.data.registros)
     }
 
-    public ubicacionEnMapa(producto){
+    public ubicacionEnMapa(producto) {
         this.data.lat = producto.latitude;
         this.data.lng = producto.longitude;
         this.data.lugar = producto.lugar;
         this.route.navigateByUrl('map');
     }
 
-    public completarFormulario(producto){
+    public completarFormulario(producto) {
         console.log("El email del que hizo esta donacion es: ", producto.emailDonante);
-         this.appComp.solicitarLaDonacion(producto.emailDonante);
-         this.appComp.agregarMailSolicitante(producto.id);
+        this.appComp.solicitarLaDonacion(producto.emailDonante);
+        this.appComp.agregarMailSolicitante(producto.id);
 
-         //console.log("Save button is clicked!", this.data.productos);
-         this.route.navigateByUrl('form');
+        //console.log("Save button is clicked!", this.data.productos);
+        this.route.navigateByUrl('form');
     }
 
-    public contieneMail(producto: Producto, mail: string){
+    public contieneMail(producto: Producto, mail: string) {
         var res: Boolean = false;
-        for(const data of producto.emailsSolicitantes){
-            if(data.mail == mail){
+        for (const data of producto.emailsSolicitantes) {
+            if (data.mail == mail) {
                 res = true;
             }
         }
         return res;
     }
 
-    public condition(producto){
+    public condition(producto) {
         var res: Boolean = false;
-        for(const data of producto.emailsSolicitantes){
+        for (const data of producto.emailsSolicitantes) {
             res = res || data.mail == this.data.userData.email;
             res = res || producto.estado == "Finalizado";
-          }
-          return res;
+            res = res || producto.estado == "Entregado";
+        }
+        return res;
     }
 
-    public esAdministrador(producto){
+    public esAdministrador(producto) {
         return producto.emailDonante == this.data.userData.nombreUsuario;
     }
 
-    public verEstado(producto){
+    public verEstado(producto) {
         this.data.emailsActuales = producto.emailsSolicitantes;
         this.route.navigateByUrl('state');
     }
-        
+
 }

@@ -67,5 +67,9 @@ export class ApiService {
     eliminarDonacionDeUsuario(idUser: any, idProd: any):Observable<UsuarioData>{
         return this.http.put<UsuarioData>(this.urlLocal+"/usuario/eliminarDonacion/"+idUser+"/"+idProd,{observe:'response'});
     }
+
+    cambiarEstadoDeDonacionAEntregado(idProd: any): Observable<Producto>{
+        return this.http.put<Producto>(this.urlLocal+"modificarEstadoEntregado/"+idProd,{observe:'response'});
+    }
     
 }
