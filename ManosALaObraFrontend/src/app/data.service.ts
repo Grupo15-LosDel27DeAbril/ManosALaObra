@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Producto } from './producto';
 import { UsuarioData } from './usuarioData';
 import { App } from './app';
+import { Registro } from './registro';
+import { Mail } from './mail';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +18,12 @@ export class DataService {
     appData: App;
     lng: number;
     lat: number;
-    lugar: String;  
+    lugar: String;
+    registros: Registro[] = [];
+    emailsActuales: Mail[];
+    productosActualesDeUsuarioLogueado: Producto[];
+    emailsActualesEnDonaciones: Mail[];
+    productoActual: Producto;
 
     constructor() {}
 

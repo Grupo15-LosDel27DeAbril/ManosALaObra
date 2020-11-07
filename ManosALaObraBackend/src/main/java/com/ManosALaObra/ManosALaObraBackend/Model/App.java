@@ -17,11 +17,25 @@ public class App {
     @JoinColumn(name="pd_fk",referencedColumnName = "id")
     private List<Producto> productos;
 
+
+    @OneToMany(targetEntity = Registro.class)
+    @JoinColumn(name="rg_fk",referencedColumnName = "id")
+    private List<Registro> registros;
+
+
     public List<Producto> getProductos() {
         return productos;
     }
 
     public void setProductos(List<Producto> productos) { this.productos = productos; }
+
+    public List<Registro> getRegistros() {
+        return registros;
+    }
+
+    public void setRegistros(List<Registro> registros) {
+        this.registros = registros;
+    }
 
     public long getId() {
         return id;
@@ -33,12 +47,18 @@ public class App {
 
     public App(){}
 
-    public App(List<Producto> productos) {
+    public App(List<Producto> productos, List<Registro> registros) {
+
         this.setProductos(productos);
+        this.setRegistros(registros);
     }
 
     public void agregarDonacion(Producto producto){
         this.getProductos().add(producto);
+    }
+
+    public void agregarRegistro(Registro registro){
+        this.getRegistros().add(registro);
     }
 
     public int cantidadDeDonaciones(){ return this.getProductos().size();}

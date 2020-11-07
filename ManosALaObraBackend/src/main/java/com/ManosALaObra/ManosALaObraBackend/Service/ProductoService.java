@@ -1,10 +1,20 @@
 package com.ManosALaObra.ManosALaObraBackend.Service;
 
+import com.ManosALaObra.ManosALaObraBackend.Model.App;
+import com.ManosALaObra.ManosALaObraBackend.Model.Mail;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
+import com.ManosALaObra.ManosALaObraBackend.Model.Usuario;
 import com.ManosALaObra.ManosALaObraBackend.Repositories.ProductoRepository;
+import com.ManosALaObra.ManosALaObraBackend.Service.MailService;
+import com.ManosALaObra.ManosALaObraBackend.Service.AppService;
+import com.ManosALaObra.ManosALaObraBackend.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -13,9 +23,23 @@ public class ProductoService {
     @Autowired
     private ProductoRepository productoRepository;
 
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
+    private AppService appService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
     @Transactional
     public Producto save(Producto model){
         return this.productoRepository.save(model);
+    }
+
+    @Transactional
+    public void delete(Long id){
+        productoRepository.delete(this.findById(id));
     }
 
     public Producto findById(Long id){ return this.productoRepository.findById(id).get();}
@@ -31,4 +55,24 @@ public class ProductoService {
         return productoRepository.findByCategoriaProductoContaining(categoria);
     }
 
+    @Transactional
+    public void deleteAll(){
+        productoRepository.deleteAll();
+    }
+
+    public Producto modificarEstado(Long idProd) {
+        return productoRepository.findById(idProd).map(
+                prod ->{
+                    prod.setEstado("Finalizado");
+                    return this.save(prod);
+                }).get();
+    }
+
+    public Producto modificarEstadoEntregado(Long idProd) {
+        return productoRepository.findById(idProd).map(
+                prod ->{
+                    prod.setEstado("Entregado");
+                    return this.save(prod);
+                }).get();
+    }
 }

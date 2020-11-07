@@ -4,6 +4,7 @@ import com.ManosALaObra.ManosALaObraBackend.Model.App;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "BSUsuario")
@@ -18,6 +19,10 @@ public class Usuario {
     private String domicilio;
     private String email;
     private String password;
+
+    @OneToMany(targetEntity = Producto.class)
+    @JoinColumn(name="pd2_fk2",referencedColumnName = "id")
+    private List<Producto> productos;
 
     public long getId() {
         return id;
@@ -59,16 +64,27 @@ public class Usuario {
         this.password = password;
     }
 
+    public List<Producto> getProductos() { return productos; }
+
+    public void setProductos(List<Producto> productos) { this.productos = productos; }
+
     public Usuario(){}
 
-    public Usuario(String nombreUsuario, String domicilio, String email, String password) {
+    public Usuario(String nombreUsuario, String domicilio, String email, String password, List<Producto> productos) {
         this.setNombreUsuario(nombreUsuario);
         this.setDomicilio(domicilio);
         this.setEmail(email);
         this.setPassword(password);
+        this.setProductos(productos);
     }
 
     public void donarProducto(Producto producto, App app){
         app.agregarDonacion(producto);
+        this.getProductos().add(producto);
     }
+
+    public void realizarRegistro(Registro registro, App app){
+        app.agregarRegistro(registro);
+    }
+
 }

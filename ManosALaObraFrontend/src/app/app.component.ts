@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
 import { Producto } from './producto';
+import { Registro } from './registro';
 import { DataService } from './data.service';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioData } from './usuarioData';
@@ -38,6 +39,10 @@ export class AppComponent {
        return this.data.productos
    }
 
+   public getRegistros(): Array<{idProducto,emailSolicitante,emailDonante}>{
+        return this.data.registros
+   }
+
    handleError(error) {
     let errorMessage = '';
      errorMessage = `Error: ${error.error.message}`;
@@ -45,7 +50,7 @@ export class AppComponent {
   }
 
   public donarProducto(product: Producto){
-    this.api.donarProductoAApi(product,  1 , 1) 
+    this.api.donarProductoAApi(product, this.data.getuserData().id, 1) 
         .subscribe(resp => { const data = resp.body
                              this.data.setuserData(data);
                            },
@@ -54,5 +59,97 @@ export class AppComponent {
                              this.handleError(err);
                            });
    }
+
+   public agregarRegistro(registro: Registro){
+     this.api.agregarRegistroAApi(registro, this.data.getuserData().id, 1)
+         .subscribe(resp => { const data = resp.body
+                              console.log(data.nombreUsuario);
+                            },
+                            err => {
+                              console.log(err);
+                              this.handleError(err);
+                            });
+   }
+
+   public getUserData(idUser: string){
+     /* Se consulta a la API y se obtiene los datos del usuario */
+     this.api.getUserData$(idUser)
+         .subscribe(resp => {
+                        const data = resp.body
+                        this.data.userData = data;
+                        this.data.nombreUsuario = this.data.userData.nombreUsuario;
+                        this.router.navigateByUrl('/home');
+         },
+         err => console.log(err));
+   }
+
+   public gestionarLogin(user: any){
+     /*Esta función se encarga de usar la api para loguearme , en este caso con Google*/
+     this.api.loginWithGoogle(user)
+         .subscribe(resp => { const data = resp
+                              /* Se llena el UserData con todos los datos del usuario. */
+                              this.getUserData(data.id.toString()); 
+                            },
+                    err => console.log(err));
+   }
+
+   public solicitarLaDonacion(emailDonante: string){
+     this.api.realizarSolicitudDeDonacion(this.data.getuserData(), emailDonante)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+
+                                },
+                        err => console.log(err));
+   }
+
+   public confirmarLaDonacion(email: string, producto: Producto){
+      this.api.realizarConfirmacionDeDonacion(this.data.getuserData(), this.data.productoActual, email)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                  
+                                  },
+                        err => console.log(err));
+   }
+
+   public agregarMailSolicitante(id: number){
+      this.api.realizarSumatoriaDeMail(this.data.getuserData(), id, 1)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                        err => console.log(err));
+   }
+
+   public cambiarEstado(id: number){
+      this.api.cambiarEstadoDonacion(id)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                         err => console.log(err));
+   }
+
+   public eliminarDonacion(idUser: number, idProd: number){
+     this.api.eliminarDonacionDeUsuario(idUser,idProd)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+                                },
+                        err => console.log(err));
+   }
+
+   public cambiarEstadoFueDonado(id:number){
+      this.api.cambiarEstadoDonacionAFueDonado(this.data.getuserData(),id,1)
+              .subscribe(resp => { const data = resp;
+                                   console.log(data);
+                                 },
+                         err => console.log(err));
+   }
+
+   public cambiarEstadoEntregado(id:number){
+     this.api.cambiarEstadoDeDonacionAEntregado(id)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+                                },
+                        err => console.log(err));     
+   }
+   
 }
 
