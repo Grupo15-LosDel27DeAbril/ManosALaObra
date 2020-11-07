@@ -24,6 +24,11 @@ export class HomeComponent implements OnInit {
     nombreProducto: string;
     productos: Producto[] = [];
     registros: Registro[] = [];
+    fileData: File;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
+
 
     constructor(private api: ApiService, private http: HttpClient, public appComp: AppComponent, public data: DataService, private route: Router) {
 
@@ -81,5 +86,33 @@ export class HomeComponent implements OnInit {
         this.data.emailsActuales = producto.emailsSolicitantes;
         this.route.navigateByUrl('state');
     }
+    preview() {
+        // Show preview 
+        var mimeType = this.fileData.type;
+        if (mimeType.match(/image\/*/) == null) {
+          return;
+        }
+      
+        var reader = new FileReader();      
+        reader.readAsDataURL(this.fileData); 
+        reader.onload = (_event) => { 
+          this.previewUrl = reader.result; 
+        }
+      }
+      onSubmit() {
+        var urlLocal = 'http://localhost:8080/api/';
+      
+        var reader  = new FileReader();
+        const formData = new FormData();
+          formData.append('file', this.fileData);
+          this.http.post(urlLocal+'/upload', formData)
+            .subscribe(res => {
+              console.log(res);
+              reader.readAsDataURL(this.fileData);
+              this.uploadedFilePath = reader.result.toString();
+              //this.uploadedFilePath = res.data.filePath;//direccion que quiero capturar
+              alert('SUCCESS !!');
+            })
+      }
 
 }

@@ -182,7 +182,6 @@ preview() {
     this.previewUrl = reader.result; 
   }
 }
-/*
 onSubmit() {
   var urlLocal = 'http://localhost:8080/api/';
 
@@ -198,8 +197,8 @@ onSubmit() {
         alert('SUCCESS !!');
       })
 }
-*/
-/* */
+
+/* 
 onSubmit() {
   const formData = new FormData();
   formData.append('files', this.fileData);
@@ -222,6 +221,6 @@ onSubmit() {
     }
        
   }) 
-}
+}*/
 }
 
