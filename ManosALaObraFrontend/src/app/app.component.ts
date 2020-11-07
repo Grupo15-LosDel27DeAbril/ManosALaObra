@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams,HttpEventType } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
 import { Producto } from './producto';
@@ -15,16 +15,20 @@ import { Title } from '@angular/platform-browser';
 
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class AppComponent {
   title = 'ManosALaObraFrontend';
-   donaciones: Producto[] = [];
-   
-   constructor(public router: Router, private http: HttpClient, private api: ApiService, public data: DataService, private translate: TranslateService, private titleService: Title ){
+  donaciones: Producto[] = [];
+  fileData: File = null;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
+
+  constructor(public router: Router, private http: HttpClient, private api: ApiService, public data: DataService, private translate: TranslateService, private titleService: Title) {
     this.translate.setDefaultLang('es');
     this.translate.use('es');
 
@@ -33,122 +37,191 @@ export class AppComponent {
         this.titleService.setTitle(res);
       });
     });
-   }
+  }
 
-   public getProductos(): Array<{nombreProducto,categoria,descripcion,imagen}>{
-       return this.data.productos
-   }
+  public getProductos(): Array<{ nombreProducto, categoria, descripcion, imagen }> {
+    return this.data.productos
+  }
 
-   public getRegistros(): Array<{idProducto,emailSolicitante,emailDonante}>{
-        return this.data.registros
-   }
+  public getRegistros(): Array<{ idProducto, emailSolicitante, emailDonante }> {
+    return this.data.registros
+  }
 
-   handleError(error) {
+  handleError(error) {
     let errorMessage = '';
-     errorMessage = `Error: ${error.error.message}`;
+    errorMessage = `Error: ${error.error.message}`;
     window.alert(errorMessage);
   }
 
-  public donarProducto(product: Producto){
-    this.api.donarProductoAApi(product, this.data.getuserData().id, 1) 
-        .subscribe(resp => { const data = resp.body
-                             this.data.setuserData(data);
-                           },
-                           err => {
-                             console.log(err);
-                             this.handleError(err);
-                           });
-   }
+  public donarProducto(product: Producto) {
+    this.api.donarProductoAApi(product, this.data.getuserData().id, 1)
+      .subscribe(resp => {
+        const data = resp.body
+        this.data.setuserData(data);
+      },
+        err => {
+          console.log(err);
+          this.handleError(err);
+        });
+  }
 
-   public agregarRegistro(registro: Registro){
-     this.api.agregarRegistroAApi(registro, this.data.getuserData().id, 1)
-         .subscribe(resp => { const data = resp.body
-                              console.log(data.nombreUsuario);
-                            },
-                            err => {
-                              console.log(err);
-                              this.handleError(err);
-                            });
-   }
-   public getUserData(idUser: string){
-     /* Se consulta a la API y se obtiene los datos del usuario */
-     this.api.getUserData$(idUser)
-         .subscribe(resp => {
-                        const data = resp.body
-                        this.data.userData = data;
-                        this.data.nombreUsuario = this.data.userData.nombreUsuario;
-                        this.router.navigateByUrl('/home');
-         },
-         err => console.log(err));
-   }
+  public agregarRegistro(registro: Registro) {
+    this.api.agregarRegistroAApi(registro, this.data.getuserData().id, 1)
+      .subscribe(resp => {
+        const data = resp.body
+        console.log(data.nombreUsuario);
+      },
+        err => {
+          console.log(err);
+          this.handleError(err);
+        });
+  }
+  public getUserData(idUser: string) {
+    /* Se consulta a la API y se obtiene los datos del usuario */
+    this.api.getUserData$(idUser)
+      .subscribe(resp => {
+        const data = resp.body
+        this.data.userData = data;
+        this.data.nombreUsuario = this.data.userData.nombreUsuario;
+        this.router.navigateByUrl('/home');
+      },
+        err => console.log(err));
+  }
 
-   public gestionarLogin(user: any){
-     /*Esta función se encarga de usar la api para loguearme , en este caso con Google*/
-     this.api.loginWithGoogle(user)
-         .subscribe(resp => { const data = resp
-                              /* Se llena el UserData con todos los datos del usuario. */
-                              this.getUserData(data.id.toString()); 
-                            },
-                    err => console.log(err));
-   }
+  public gestionarLogin(user: any) {
+    /*Esta función se encarga de usar la api para loguearme , en este caso con Google*/
+    this.api.loginWithGoogle(user)
+      .subscribe(resp => {
+        const data = resp
+        /* Se llena el UserData con todos los datos del usuario. */
+        this.getUserData(data.id.toString());
+      },
+        err => console.log(err));
+  }
 
-   public solicitarLaDonacion(emailDonante: string){
-     this.api.realizarSolicitudDeDonacion(this.data.getuserData(), emailDonante)
-             .subscribe(resp => { const data = resp;
-                                  console.log(data);
+  public solicitarLaDonacion(emailDonante: string) {
+    this.api.realizarSolicitudDeDonacion(this.data.getuserData(), emailDonante)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
 
-                                },
-                        err => console.log(err));
-   }
+      },
+        err => console.log(err));
+  }
 
-   public confirmarLaDonacion(email: string, producto: Producto){
-      this.api.realizarConfirmacionDeDonacion(this.data.getuserData(), this.data.productoActual, email)
-              .subscribe(resp => { const data = resp;
-                                   console.log(data);
-                                  
-                                  },
-                        err => console.log(err));
-   }
+  public confirmarLaDonacion(email: string, producto: Producto) {
+    this.api.realizarConfirmacionDeDonacion(this.data.getuserData(), this.data.productoActual, email)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
 
-   public agregarMailSolicitante(id: number){
-      this.api.realizarSumatoriaDeMail(this.data.getuserData(), id, 1)
-              .subscribe(resp => { const data = resp;
-                                   console.log(data);
-                                 },
-                        err => console.log(err));
-   }
+      },
+        err => console.log(err));
+  }
 
-   public cambiarEstado(id: number){
-      this.api.cambiarEstadoDonacion(id)
-              .subscribe(resp => { const data = resp;
-                                   console.log(data);
-                                 },
-                         err => console.log(err));
-   }
+  public agregarMailSolicitante(id: number) {
+    this.api.realizarSumatoriaDeMail(this.data.getuserData(), id, 1)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
+      },
+        err => console.log(err));
+  }
 
-   public eliminarDonacion(idUser: number, idProd: number){
-     this.api.eliminarDonacionDeUsuario(idUser,idProd)
-             .subscribe(resp => { const data = resp;
-                                  console.log(data);
-                                },
-                        err => console.log(err));
-   }
+  public cambiarEstado(id: number) {
+    this.api.cambiarEstadoDonacion(id)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
+      },
+        err => console.log(err));
+  }
 
-   public cambiarEstadoFueDonado(id:number){
-      this.api.cambiarEstadoDonacionAFueDonado(this.data.getuserData(),id,1)
-              .subscribe(resp => { const data = resp;
-                                   console.log(data);
-                                 },
-                         err => console.log(err));
-   }
+  public eliminarDonacion(idUser: number, idProd: number) {
+    this.api.eliminarDonacionDeUsuario(idUser, idProd)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
+      },
+        err => console.log(err));
+  }
 
-   public cambiarEstadoEntregado(id:number){
-     this.api.cambiarEstadoDeDonacionAEntregado(id)
-             .subscribe(resp => { const data = resp;
-                                  console.log(data);
-                                },
-                        err => console.log(err));     
-   }
-   
+  public cambiarEstadoFueDonado(id: number) {
+    this.api.cambiarEstadoDonacionAFueDonado(this.data.getuserData(), id, 1)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
+      },
+        err => console.log(err));
+  }
+
+  public cambiarEstadoEntregado(id: number) {
+    this.api.cambiarEstadoDeDonacionAEntregado(id)
+      .subscribe(resp => {
+        const data = resp;
+        console.log(data);
+      },
+        err => console.log(err));
+  }
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+}
+
+preview() {
+  // Show preview 
+  var mimeType = this.fileData.type;
+  if (mimeType.match(/image\/*/) == null) {
+    return;
+  }
+
+  var reader = new FileReader();      
+  reader.readAsDataURL(this.fileData); 
+  reader.onload = (_event) => { 
+    this.previewUrl = reader.result; 
+  }
+}
+/*
+onSubmit() {
+  var urlLocal = 'http://localhost:8080/api/';
+
+  var reader  = new FileReader();
+  const formData = new FormData();
+    formData.append('file', this.fileData);
+    this.http.post(urlLocal+'/upload', formData)
+      .subscribe(res => {
+        console.log(res);
+        reader.readAsDataURL(this.fileData);
+        this.uploadedFilePath = reader.result.toString();
+        //this.uploadedFilePath = res.data.filePath;//direccion que quiero capturar
+        alert('SUCCESS !!');
+      })
+}
+*/
+/* */
+onSubmit() {
+  const formData = new FormData();
+  formData.append('files', this.fileData);
+  var urlLocal = 'http://localhost:8080/api/';
+ 
+  this.fileUploadProgress = '0%';
+
+  this.http.post(urlLocal+'/fileUpload', formData, {
+    reportProgress: true,
+    observe: 'events'   
+  })
+  .subscribe(events => {
+    if(events.type === HttpEventType.UploadProgress) {
+      this.fileUploadProgress = Math.round(events.loaded / events.total * 100) + '%';
+      console.log(this.fileUploadProgress);
+    } else if(events.type === HttpEventType.Response) {
+      this.fileUploadProgress = '';
+      console.log(events.body);          
+      alert('SUCCESS !!');
+    }
+       
+  }) 
+}
 }
 

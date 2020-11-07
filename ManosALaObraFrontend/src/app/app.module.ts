@@ -28,8 +28,7 @@ import { StateComponent } from './state/state.component';
 import { MyDonationsComponent } from './my-donations/my-donations.component'
 import { EmailDonationsComponent } from './email-donations/email-donations.comonent';
 import { ConfirmedRequestComponent } from './confirmed-request/confirmed-request.component';
-/*modulos para fecha y moneda*/
-//en app.component
+import { HttpClientComponent } from './http-client/http-client.component';
 
 let config = new AuthServiceConfig([
   {
@@ -56,7 +55,8 @@ export function provideConfig() {
         EmailDonationsComponent,
         DonacionCreateComponent,
         MapComponent,
-        ImageUploadComponent
+        ImageUploadComponent,
+        HttpClientComponent
     ],
     imports: [
       BrowserModule,
