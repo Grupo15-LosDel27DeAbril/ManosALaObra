@@ -30,16 +30,16 @@
 
                     <div class=" alert-danger" *ngIf="nombreProducto.invalid && (nombreProducto.dirty || nombreProducto.touched)">
                        <div class="container-error-message"  *ngIf="nombreProducto.errors.required">
-                         <h3>El nombre del producto es obligatorio.</h3>
+                         <h4>El nombre de la donación es obligatorio.</h4>
                        </div>
                        <div class="container-error-message"  *ngIf="nombreProducto.errors.minlength">
-                         <h3> El nombre del producto tiene que ser mayor a 2 caracteres.</h3>
+                         <h4> El nombre de la donación tiene que ser mayor a 2 caracteres.</h4>
                        </div>
                     </div>
                 </div>
 
                 <div class="form-group col-md-6">
-                  <label> Categoria </label>
+                  <label> Categoría </label>
                   <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" formControlName="categoria">
                     <option selected>Choose...</option>
                     <option value="Alimento no perecedero">Alimento no perecedero</option>
@@ -47,22 +47,22 @@
                     <option value="Juguete">Juguete</option>
                     <option value="Calzado">Calzado</option>
                     <option value="Objeto recreativo">Objeto recreativo</option>
-                    <option value="Otra categoria">Otra categoria</option> 
+                    <option value="Otra categoria">Otra categoría</option> 
                   </select>
  
 
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label> Descripcion </label>
+                    <label> Descripción </label>
                     <input type="text"  class="form-control" formControlName="descripcion">
 
                     <div class="alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
                       <div class="container-error-message"  *ngIf="descripcion.errors.required">
-                         <h3>La descripcion del producto es obligatoria.</h3>
+                         <h4>La descripción de la donación es obligatoria.</h4>
                        </div>
                        <div class="container-error-message"  *ngIf="descripcion.errors.minlength">
-                         <h3> La descripcion del producto tiene que ser mayor a 2 caracteres.</h3>
+                         <h4> La descripción de la donación tiene que ser mayor a 2 caracteres.</h4>
                        </div>
                     </div>
 
@@ -75,10 +75,10 @@
 
                   <div class="alert-danger" *ngIf="emailDonante.invalid && (emailDonante.dirty || emailDonante.touched)">
                     <div class="container-error-message"  *ngIf="emailDonante.errors.required">
-                       <h3> Su dirección de email es obligatoria.</h3>
+                       <h4> Su dirección de email es obligatoria.</h4>
                      </div>
                      <div class="container-error-message"  *ngIf="emailDonante.errors.email">
-                       <h3> Debe ingresar una diercción de email válida.</h3>
+                       <h4> Debe ingresar una diercción de email válida.</h4>
                      </div>
                   </div>
 
@@ -90,7 +90,7 @@
 
                   <div class="alert-danger" *ngIf="fechaPublicacion.invalid && (fechaPublicacion.dirty || fechaPublicacion.touched)">
                     <div class="container-error-message"  *ngIf="fechaPublicacion.errors.required">
-                      <h3>La fecha de publicación es obligatoria.</h3>
+                      <h4>La fecha de publicación es obligatoria.</h4>
                     </div>
                   </div>
 
@@ -102,7 +102,7 @@
 
                   <div class="alert-danger" *ngIf="validoHasta.invalid && (validoHasta.dirty || validoHasta.touched)">
                     <div class="container-error-message"  *ngIf="validoHasta.errors.required">
-                      <h3>La fecha límite es obligatoria.</h3>
+                      <h4>La fecha límite es obligatoria.</h4>
                     </div>
                   </div>
 
@@ -114,10 +114,10 @@
 
                     <div class="alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
                       <div class="container-error-message"  *ngIf="imagen.errors.required">
-                         <h3>La imagen del producto es obligatoria.</h3>
+                         <h4>La imagen de la donación es obligatoria.</h4>
                       </div>
                       <div class="container-error-message"  *ngIf="imagen.errors.minlength">
-                         <h3> La imagen del producto tiene que ser mayor a 5 caracteres.</h3>
+                         <h4> La imagen de la donación tiene que ser mayor a 5 caracteres.</h4>
                       </div>
                     </div>
 
@@ -125,7 +125,7 @@
 
 
                 <!--<h1> Ubicación de recolección </h1>-->
-              <label>Ubicacion de recoleccion</label>
+              <label>Ubicación de recolección</label>
                 <div class="form-group col-md-6">
                   <div id="mapa-mapbox"></div>
                 </div>
@@ -170,10 +170,10 @@
 
                 <div class="alert-danger" *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
                   <div class="container-error-message"  *ngIf="lugar.errors.required">
-                     <h3> El lugar de entrega es obligatorio.</h3>
+                     <h4> El lugar de entrega es obligatorio.</h4>
                    </div>
                    <div class="container-error-message"  *ngIf="lugar.errors.minlength">
-                     <h3> El lugar de entrega tiene que ser mayor a 2 caracteres.</h3>
+                     <h4> El lugar de entrega tiene que ser mayor a 2 caracteres.</h4>
                    </div>
                 </div>
 
