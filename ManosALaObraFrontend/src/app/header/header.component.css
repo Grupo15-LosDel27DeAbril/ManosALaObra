@@ -9,7 +9,9 @@
 }
 
 .navbar-brand{
-  font: 2em sans-serif;
+  font: 2em serif;
   font-weight: bold;
-  font-style: italic
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+
