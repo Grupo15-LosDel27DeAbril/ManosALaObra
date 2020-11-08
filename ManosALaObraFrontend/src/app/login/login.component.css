@@ -16,7 +16,8 @@ h1 {
   background: rgb(0, 255, 76);
 }
 h3{
-  text-align: left; 
+  text-align: left;
+  font-family: 'Times New Roman', Times, serif; 
 }
 .custom-form {
   min-width: 300px;
