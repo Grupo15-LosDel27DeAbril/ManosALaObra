@@ -68,9 +68,12 @@ public class UsuarioService {
 
 
     public Usuario agregarDonacionASistema(Producto newProducto, Long idUser, App app){
+        // Se agrega una nueva donación a la app.
+        // Su estado se setea en "disponible".
+        // Tiene una lista de mails solicitantes vacía.
         return usuarioRepository.findById(idUser).map(
                 user ->{
-                    newProducto.setEmailDonante(user.getEmail());//me llevo el email de quien lo publico
+                    newProducto.setEmailDonante(user.getEmail());//me llevo el email de quien lo publicó
                     newProducto.setEstado("Disponible");
                     newProducto.setEmailsSolicitantes(new ArrayList<Mail>());
                     newProducto.setIdDonante(user.getId());
@@ -116,17 +119,24 @@ public class UsuarioService {
     }
 
 
-    public Usuario solicitarDonacion(String mail, Long idUser) {
+    public Usuario solicitarDonacion(Long idUser, Long idProd) {
+        // Se solicita determianda donación subida en la app.
+        Producto producto = productoRepository.findById(idProd).get();
         return usuarioRepository.findById(idUser).map(
                 user ->{
                     /* Se deberia enviar un mail. */
-                    enviarMail(user, mail);
+                    enviarMail(user, producto);
 
                     return usuarioRepository.save(user);
                 }).get();
     }
 
     public Usuario confirmarDonacion(String mail, Long idUser, Long idProd) {
+        /*
+           Este método se encarga de configurar el envío de mail que notificará al usuario que
+           solicitó la donación que será el beneficiario del mismo. El string "mail" es el mail
+           del usuario beneficiado.
+        */
         Producto producto = productoRepository.findById(idProd).get();
         return usuarioRepository.findById(idUser).map(
                 user -> {
@@ -139,9 +149,9 @@ public class UsuarioService {
 
 
 
-    private void enviarMail(Usuario user, String mail) {
+    private void enviarMail(Usuario user, Producto producto) {
         /* Se gestiona el mail que le llegará a la persona que realizó la donacion. */
-        gestionarMail(user, mail);
+        gestionarMail(user, producto);
     }
 
     private void enviarMailConfirmacion(Producto producto, Usuario user, String mail) {
@@ -150,8 +160,8 @@ public class UsuarioService {
     }
 
 
-    private void gestionarMail(Usuario user, String mail) {
-        String body = "Tu donacion ha sido solicitada por el usuario con mail: " + user.getNombreUsuario()+".\n";
+    private void gestionarMail(Usuario user, Producto producto) {
+        String body = "Tu donacion con nombre: " + producto.getNombreProducto() + ", ha sido solicitada por el usuario con mail: " + user.getNombreUsuario()+".\n";
         String titulo = "Solicitud de donación";
         Calendar calendar = Calendar.getInstance();
         calendar.set(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth(),
@@ -161,7 +171,7 @@ public class UsuarioService {
                 + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
-        sendMailService.sendMail("manosalaobra.27.04@gmail.com", mail, titulo, body);
+        sendMailService.sendMail("manosalaobra.27.04@gmail.com", producto.getEmailDonante(), titulo, body);
     }
 
     private void gestionarMailConfirmacion(Producto producto, Usuario user, String mail) {
@@ -202,14 +212,17 @@ public class UsuarioService {
     public Producto setearMail(Long idUser, Long idProd, App app){
 
         // Se encarga de agregar el mail de quien solicitó la donación .
+        // Pueden llegar varias solicitudes, varios mails.
+        // Dicho mail se agrega a la lista de solicitantes de la donación.
+        // Una vez hecho esto, la donación pasa de estar de "Disponible" a "Pendiente".
         Usuario res = usuarioRepository.findById(idUser).get();
         appService.save(app);
         return productoRepository.findById(idProd).map(
                 prod ->{
-                    Mail mail = new Mail(res.getNombreUsuario());
+                    Mail mail = new Mail(res.getNombreUsuario());  // Se guarda como dato el mail del usuario solicitante.
                     mailService.save(mail);
                     List<Mail> mails = prod.getEmailsSolicitantes();
-                    mails.add(mail);
+                    mails.add(mail);  // Se agrega a la lista de mails solicitantes un nuevo mail.
                     prod.setEmailsSolicitantes(mails);
                     prod.setEstado("Pendiente");
                     Producto producto = prod;
@@ -222,6 +235,8 @@ public class UsuarioService {
 
     public Producto modificarFueDonado(Long idUser, Long idProd, App app) {
         // Se encarga de configurar que la donación fue realizada.
+        // Dicha configuración se realiza seteando el booleano que indica que fue donado en "true".
+        // Esto nos servirá para determinar si la donación puede marcarse como entregada o no.
         Usuario res = usuarioRepository.findById(idUser).get();
         appService.save(app);
         return productoRepository.findById(idProd).map(
@@ -236,6 +251,9 @@ public class UsuarioService {
     }
 
     private void actualizarUsuario(Producto producto) {
+        // Se actualiza la lista de donaciones del usuario donante.
+        // Se actualiza sus donaciones con sus respectivos solicitantes.
+        // Cada donación almacena el id de su usuario donante.
         usuarioRepository.findById(producto.getIdDonante()).map(
                 user ->{
                     user.getProductos().remove(producto.getId());
@@ -247,6 +265,11 @@ public class UsuarioService {
     }
 
     public Usuario eliminarDonacion(Long idUser, Long idProd) {
+        /*
+           Si bien no se elimina la donación del sistema, queda registrado en la app con el estado
+           "Finalizado" y que fue donado. Una vez registrado con este estado, nadie podrá
+            volver a solicitarlo.
+         */
         return usuarioRepository.findById(idUser).map(
                 user -> {
                     for(Producto p: user.getProductos()) {

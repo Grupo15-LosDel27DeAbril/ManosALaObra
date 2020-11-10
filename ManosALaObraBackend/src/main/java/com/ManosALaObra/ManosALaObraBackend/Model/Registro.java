@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "BSRegistro")
 public class Registro {
 
+    /* NO SE USAN LOS REGISTROS (nota mental: borrar esto!!) */
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;

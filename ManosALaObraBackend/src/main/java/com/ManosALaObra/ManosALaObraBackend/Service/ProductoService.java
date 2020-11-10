@@ -61,6 +61,7 @@ public class ProductoService {
     }
 
     public Producto modificarEstado(Long idProd) {
+        // Se modifica el estado de la donación de "pendiente" a "finalizado".
         return productoRepository.findById(idProd).map(
                 prod ->{
                     prod.setEstado("Finalizado");
@@ -69,6 +70,7 @@ public class ProductoService {
     }
 
     public Producto modificarEstadoEntregado(Long idProd) {
+        // Se modifica el estado de la donación de "finalizado" a "entregado."
         return productoRepository.findById(idProd).map(
                 prod ->{
                     prod.setEstado("Entregado");

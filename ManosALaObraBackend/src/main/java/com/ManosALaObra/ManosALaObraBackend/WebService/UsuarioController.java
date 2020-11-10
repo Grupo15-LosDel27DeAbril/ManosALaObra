@@ -40,9 +40,9 @@ public class UsuarioController {
     }
 
     @CrossOrigin
-    @PutMapping("/api/usuario/solicitarDonacion/{id}")
-    public Usuario solicitarDonacionSubida(@RequestBody String email, @PathVariable Long id){
-       return usuarioService.solicitarDonacion(email,id);
+    @PutMapping("/api/usuario/solicitarDonacion/{idUser}/{idProd}")
+    public Usuario solicitarDonacionSubida(@PathVariable Long idUser, @PathVariable Long idProd){
+       return usuarioService.solicitarDonacion(idUser, idProd);
     }
 
     @CrossOrigin

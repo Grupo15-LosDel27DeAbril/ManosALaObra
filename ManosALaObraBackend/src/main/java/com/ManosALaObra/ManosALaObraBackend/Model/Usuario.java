@@ -79,8 +79,8 @@ public class Usuario {
     }
 
     public void donarProducto(Producto producto, App app){
-        app.agregarDonacion(producto);
-        this.getProductos().add(producto);
+        app.agregarDonacion(producto); // Realiza la donación en la app (es el objeto que almacena las donaciones del sistema).
+        this.getProductos().add(producto); // Guarda esa donación realizada en una lista de donaciones propia del usuario.
     }
 
     public void realizarRegistro(Registro registro, App app){

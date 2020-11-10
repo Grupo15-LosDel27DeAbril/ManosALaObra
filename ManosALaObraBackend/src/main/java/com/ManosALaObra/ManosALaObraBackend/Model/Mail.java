@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "BSMail")
 public class Mail {
 
+    /* Tabla de Mails */
+    /* Columna id y mail */
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;

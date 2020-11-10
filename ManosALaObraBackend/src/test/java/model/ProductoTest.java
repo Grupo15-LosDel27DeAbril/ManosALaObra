@@ -7,7 +7,9 @@ import com.ManosALaObra.ManosALaObraBackend.Tools.Factory.ProductoFactory;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class ProductoTest extends TestCase {
@@ -18,17 +20,25 @@ public class ProductoTest extends TestCase {
     public void testFechaDePublicacion(){
         productoBuilder.withFechaPublicacion(LocalDate.of(2020, 10, 03));
         Producto producto = productoBuilder.build();
-        assertEquals(producto.getFechaPublicacion().getYear(), 2020);
-        assertEquals(producto.getFechaPublicacion().getMonth().getValue(), 10);
-        assertEquals(producto.getFechaPublicacion().getDayOfMonth(), 03);
+        assertEquals(producto.getFechaPublicacion(), "03-10-2020");
     }
 
     @Test
     public void testFechaLimitePublicacion(){
         productoBuilder.withFechaLimite(LocalDate.now());
         Producto producto = productoBuilder.build();
-        assertEquals(producto.getValidoHasta().getYear(), 2020);
-        assertEquals(producto.getValidoHasta().getMonth().getValue(), 10);
-        assertEquals(producto.getValidoHasta().getDayOfMonth(), 31);
+        assertEquals(producto.getValidoHasta(), "09-11-2020");
+    }
+
+    @Test
+    public void testProbarFechas(){
+        assertEquals(1,1);
+        LocalDate fecha1 = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String text = fecha1.format(formatter);
+        LocalDate parsedDate = LocalDate.parse(text, formatter);
+
+        System.out.println("la fecha es: " + fecha1.format(formatter));
+        System.out.println("la otra fecha es: " + text);
     }
 }

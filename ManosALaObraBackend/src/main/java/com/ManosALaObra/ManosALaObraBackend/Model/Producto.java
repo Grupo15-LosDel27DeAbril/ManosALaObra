@@ -24,15 +24,15 @@ public class Producto {
     private Double latitude;
     private Double longitude;
     private String lugar;
-    private LocalDate fechaPublicacion;
-    private LocalDate validoHasta;
+    private String fechaPublicacion;
+    private String validoHasta;
     private String emailDonante;
     private String estado;
     private long idDonante;
 
     @OneToMany(targetEntity = Mail.class)
     @JoinColumn(name="ms_fk",referencedColumnName = "id")
-    private List<Mail> emailsSolicitantes;
+    private List<Mail> emailsSolicitantes;   // Se tuvo que crear objetos de tipo "Mail" porque con lista de strings no permitía un mapeo óptimo en hibernate.
     private boolean fueDonado;
 
     public String getNombreProducto() {
@@ -99,13 +99,21 @@ public class Producto {
         this.lugar = lugar;
     }
 
-    public LocalDate getFechaPublicacion() { return fechaPublicacion; }
+    public String getFechaPublicacion() { return fechaPublicacion; }
 
-    public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
+    public void setFechaPublicacion(LocalDate fechaPublicacion) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String text = fechaPublicacion.format(formatter);
+        this.fechaPublicacion = text;
+    }
 
-    public LocalDate getValidoHasta() { return validoHasta; }
+    public String getValidoHasta() { return validoHasta; }
 
-    public void setValidoHasta(LocalDate validoHasta) { this.validoHasta = validoHasta; }
+    public void setValidoHasta(LocalDate validoHasta) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String text = validoHasta.format(formatter);
+        this.validoHasta = text;
+    }
 
     public String getEmailDonante() {
         return emailDonante;
@@ -133,18 +141,18 @@ public class Producto {
 
     public String imprimirFecha(LocalDate unaFecha){
         LocalDate dateObj = unaFecha;
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm:ss");
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = dateObj.format(myFormatObj);
        return formattedDate;
     }
 
     public Producto() {
-        this.fechaPublicacion = LocalDate.now();
+        this.fechaPublicacion = "01-01-2021";
     }
 
     public Producto(String nombre){
         this.setNombreProducto(nombre);
-        this.fechaPublicacion = LocalDate.now();
+        this.fechaPublicacion = "01-01-2021";
     }
 
     public Producto(String nombreProducto, String descripcion, String imagen, String categoria, Double latitude, Double longitude, String lugar, LocalDate desde, LocalDate hasta, String emailDonante, List<Mail> emailsSolicitantes, String estado, long idDonante, boolean fueDonado){
@@ -192,7 +200,7 @@ public class Producto {
         log.trace("Nombre del producto" + this.getNombreProducto());
         log.trace(" , Categoria" + this.getCategoria());
         log.trace(" , Descripcion" + this.getDescripcion());
-        log.trace(" ,disponible desde: "+ this.imprimirFecha(this.fechaPublicacion));
+        //log.trace(" ,disponible desde: "+ this.imprimirFecha(this.fechaPublicacion));
         log.trace("]");
     }
 }

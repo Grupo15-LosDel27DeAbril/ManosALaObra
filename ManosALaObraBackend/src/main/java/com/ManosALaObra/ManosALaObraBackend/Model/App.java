@@ -21,6 +21,7 @@ public class App {
     @OneToMany(targetEntity = Registro.class)
     @JoinColumn(name="rg_fk",referencedColumnName = "id")
     private List<Registro> registros;
+    // No se usan los registros (nota mental: borrar esto!!).
 
 
     public List<Producto> getProductos() {
