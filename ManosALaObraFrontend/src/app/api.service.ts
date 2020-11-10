@@ -5,6 +5,7 @@ import { Producto } from './producto';
 import { UsuarioData } from './usuarioData';
 import { App } from './app';
 import { Registro } from './registro';
+import { DatePipe } from '@angular/common';
 //import { observeOn } from 'rxjs/operators';
 
 @Injectable({
@@ -35,8 +36,8 @@ export class ApiService {
         return this.http.post<UsuarioData>(this.urlLocal+"donarProducto/"+idUser+"/"+idApp, producto, {observe: 'response'})
     } 
 
-    realizarSolicitudDeDonacion(userData: UsuarioData, emailDonante: string){
-        return this.http.put<UsuarioData>(this.urlLocal+'/usuario/solicitarDonacion/'+userData.id,emailDonante,{observe:'response'});
+    realizarSolicitudDeDonacion(userData: UsuarioData, producto: Producto){
+        return this.http.put<UsuarioData>(this.urlLocal+'/usuario/solicitarDonacion/'+userData.id+"/"+producto.id,{observe:'response'});
     }
 
     realizarConfirmacionDeDonacion(userData: UsuarioData, producto: Producto, email: string){
@@ -70,6 +71,10 @@ export class ApiService {
 
     cambiarEstadoDeDonacionAEntregado(idProd: any): Observable<Producto>{
         return this.http.put<Producto>(this.urlLocal+"modificarEstadoEntregado/"+idProd,{observe:'response'});
+    }
+
+    mostrarFechaDesde(idProd: any): Observable<HttpResponse<String>>{
+        return this.http.get<String>(this.urlLocal+"mostrarFechaPublicacion/"+idProd,{observe:'response'});
     }
     
 }

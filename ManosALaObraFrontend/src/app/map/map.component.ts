@@ -5,6 +5,8 @@ import { DataService } from '../data.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import * as Mapboxgl from 'mapbox-gl';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 @Component({
     selector: 'app-map',
@@ -29,7 +31,7 @@ export class MapComponent implements OnInit {
     }
 
     ngOnInit(){
-
+  
       (Mapboxgl as any).accessToken = environment.mapboxKey;
       this.mapa = new Mapboxgl.Map({
         container: 'mapa-mapbox',
@@ -41,6 +43,17 @@ export class MapComponent implements OnInit {
         draggable: false
     }).setLngLat([this.lng, this.lat])
       .addTo(this.mapa);
+      var geocoder = new MapboxGeocoder({
+          accessToken: (Mapboxgl as any).accessToken,
+          mapboxgl: (Mapboxgl as any),
+          marker: true,
+      });
+
+    this.mapa.addControl(geocoder);
+    const markerSearch = new Mapboxgl.Marker({
+      draggable: true
+  });
+
   }
 
   onDragEnd(lng: number, lat: number) {

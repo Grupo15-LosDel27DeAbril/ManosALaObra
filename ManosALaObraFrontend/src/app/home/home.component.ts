@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppComponent } from '../app.component';
 import { DataService } from '../data.service';
@@ -7,6 +7,7 @@ import { ApiService } from '../api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Registro } from '../registro';
 import { StateComponent } from '../state/state.component';
+import { DatePipe } from '@angular/common';
 //import { registerLocaleData } from '@angular/common';
 
 @Component({
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
 
     public completarFormulario(producto){
         console.log("El email del que hizo esta donacion es: ", producto.emailDonante);
-         this.appComp.solicitarLaDonacion(producto.emailDonante);
+         this.appComp.solicitarLaDonacion(producto);
          this.appComp.agregarMailSolicitante(producto.id);
 
          //console.log("Save button is clicked!", this.data.productos);

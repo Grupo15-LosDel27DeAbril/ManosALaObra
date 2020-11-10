@@ -9,6 +9,8 @@ import { Injectable} from '@angular/core';
 import * as Mapboxgl from 'mapbox-gl';
 import { environment } from '../../enviroments/environment';
 import * as Scroll from 'ngx-infinite-scroll';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 @Component({
     selector: 'app-donacion-create',
@@ -43,6 +45,16 @@ export class DonacionCreateComponent implements OnInit{
           zoom: 16.6
     });
     this.crearMarcador(-58.2535363, -34.7405353);
+    var geocoder = new MapboxGeocoder({
+        accessToken: (Mapboxgl as any).accessToken,
+        mapboxgl: (Mapboxgl as any),
+        marker: true,
+    });
+
+    this.mapa.addControl(geocoder);
+    const marker = new Mapboxgl.Marker({
+        draggable: true
+    });
 }
 
 

@@ -93,8 +93,8 @@ export class AppComponent {
                     err => console.log(err));
    }
 
-   public solicitarLaDonacion(emailDonante: string){
-     this.api.realizarSolicitudDeDonacion(this.data.getuserData(), emailDonante)
+   public solicitarLaDonacion(producto: Producto){
+     this.api.realizarSolicitudDeDonacion(this.data.getuserData(), producto)
              .subscribe(resp => { const data = resp;
                                   console.log(data);
 
@@ -149,6 +149,14 @@ export class AppComponent {
                                   console.log(data);
                                 },
                         err => console.log(err));     
+   }
+
+   public imprimirFechaDePublicacion(id: number){
+     return this.api.mostrarFechaDesde(id)
+             .subscribe(resp => { const data = resp;
+                                  console.log(data);
+                                },
+                        err => console.log(err));
    }
    
 }

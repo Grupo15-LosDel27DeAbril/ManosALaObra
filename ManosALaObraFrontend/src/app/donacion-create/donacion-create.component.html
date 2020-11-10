@@ -2,6 +2,12 @@
 <app-header></app-header>
 
 <body>
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+    type="text/css"
+  />  
   <div  class="search-results"
         infiniteScroll
        [infiniteScrollDistance]="2"
@@ -40,8 +46,7 @@
 
                 <div class="form-group col-md-6">
                   <label> Categoría </label>
-                  <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" formControlName="categoria">
-                    <option selected>Choose...</option>
+                  <select type ="text" class="form-control" formControlName="categoria">
                     <option value="Alimento no perecedero">Alimento no perecedero</option>
                     <option value="Indumentaria">Indumentaria</option>
                     <option value="Juguete">Juguete</option>
