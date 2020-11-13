@@ -33,7 +33,7 @@ export class HttpClientComponent implements OnInit {
   }
   /*
   onSubmit() {
-    var urlLocal = 'http://localhost:4200/api/';
+    var urlLocal = 'http://localhost:8080/api/';
 
     var reader = new FileReader();
     const formData = new FormData();
@@ -52,7 +52,7 @@ export class HttpClientComponent implements OnInit {
 onSubmit() {
   const formData = new FormData();
   formData.append('files', this.fileData);
-  var urlLocal = 'http://localhost:4200/api/';
+  var urlLocal = 'http://localhost:8080/api/';
  
   this.fileUploadProgress = '0%';
 
