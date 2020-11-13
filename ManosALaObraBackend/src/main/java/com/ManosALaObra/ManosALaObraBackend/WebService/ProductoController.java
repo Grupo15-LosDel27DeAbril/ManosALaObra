@@ -38,6 +38,13 @@ public class ProductoController {
     }
 
     @CrossOrigin
+    @PutMapping("/api/agregarMailConMotivo/{idProd}/{idUser}/{idApp}")
+    public Producto newEmailConMotivo(@RequestBody Mail mail, @PathVariable Long idProd, @PathVariable Long idUser, @PathVariable Long idApp){
+        App app = appService.findById(idApp);
+        return productoService.setearMailConMotivo(mail,idProd,idUser,app);
+    }
+
+    @CrossOrigin
     @PutMapping("/api/modificarFueDonado/{idUser}/{idProd}/{idApp}")
     public Producto modificarDonacionSubida(@PathVariable Long idUser, @PathVariable Long idProd, @PathVariable Long idApp){
         App app = appService.findById(idApp);

@@ -24,7 +24,9 @@
        <table class="table  table-hover">
         <thead class="thead-dark">
             <tr>
-              <th> Mail del solicitante</th>
+              <th> Mail solicitante </th>
+              <th> Nombre solicitante </th>
+              <th> Motivo </th> 
               <th> </th>
             </tr>
         </thead>
@@ -32,6 +34,8 @@
         <tr *ngFor="let email of data.emailsActualesEnDonaciones">
 
             <td> {{ email.mail }} </td>
+            <td> {{ email.name }} </td>
+            <td> {{ email.motivo }} </td>
 
             <td>
                <button class="btn btn-primary" (click)="enviarMailConfirmacion(email)"> Confirmar </button>

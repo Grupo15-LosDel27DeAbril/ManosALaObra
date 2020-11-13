@@ -4,6 +4,7 @@ import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
 import { Producto } from './producto';
 import { Registro } from './registro';
+import { Mail } from './mail';
 import { DataService } from './data.service';
 import { Router, RouterLink } from '@angular/router';
 import { UsuarioData } from './usuarioData';
@@ -157,6 +158,14 @@ export class AppComponent {
                                   console.log(data);
                                 },
                         err => console.log(err));
+   }
+
+   public agregarMailConMotivo(mail: Mail, idProd: number, idUser: number){
+     return this.api.realizarSumatoriaDeMailConMotivo(mail, idProd,idUser, 1)
+                .subscribe(resp => { const data = resp;
+                                     console.log(data); 
+                                   },
+                           err => console.log(err));         
    }
    
 }

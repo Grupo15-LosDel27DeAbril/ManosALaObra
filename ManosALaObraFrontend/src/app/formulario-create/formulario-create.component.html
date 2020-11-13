@@ -1,0 +1,70 @@
+
+<body>
+    <div class="container mail-form " style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-10">
+               <h1> Solicitar Donación </h1>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-outline-light" (click)="volverAlHome()">
+                 <small >Volver al Home</small><i class="fa fa-angle-double-left"></i>
+              </button>
+           </div>
+        </div>
+        <hr>
+        
+        <div class="row">
+            <form [formGroup]="mailForm" (ngSubmit)="onSaveForm()">
+                <div class="form-row">
+
+                    <div class="form-group col-md-12">
+                        <label> Nombre </label>
+                        <input  type="text"  class="form-control"  formControlName="name">
+    
+                        <div class=" alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                           <div class="container-error-message"  *ngIf="name.errors.required">
+                             <h4>El nombre es obligatorio.</h4>
+                           </div>
+                           <div class="container-error-message"  *ngIf="name.errors.minlength">
+                             <h4> El nombre tiene que ser mayor a 3 caracteres.</h4>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <label> Motivo </label>
+                        <input  type="text"  class="form-control"  formControlName="motivo">
+    
+                        <div class=" alert-danger" *ngIf="motivo.invalid && (motivo.dirty || motivo.touched)">
+                           <div class="container-error-message"  *ngIf="motivo.errors.required">
+                             <h4>El motivo es obligatorio.</h4>
+                           </div>
+                           <div class="container-error-message"  *ngIf="motivo.errors.minlength">
+                             <h4> El motivo tiene que ser mayor a 3 caracteres.</h4>
+                           </div>
+                           <div class="container-error-message"  *ngIf="motivo.errors.maxlength">
+                            <h4> El motivo tiene que ser menor a 30 caracteres.</h4>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <br>
+                
+
+                <button type="submit" class="btn btn-outline-success" [disabled]="!mailForm.valid"> Solicitar </button>
+            </form>
+
+            <br>
+            <div class="alert alert-success alert-dismissible fade show" role="alert" [hidden]="!alert" >
+              <strong> Solicitud realizada satisfactoriamente </strong> Muchas gracias!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+        </div>
+    </div>
+</body>

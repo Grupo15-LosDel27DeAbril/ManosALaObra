@@ -77,4 +77,23 @@ public class ProductoService {
                     return this.save(prod);
                 }).get();
     }
+
+    public Producto setearMailConMotivo(Mail mail, Long idProd, Long idUser,App app) {
+        Usuario res = usuarioService.findById(idUser);
+        appService.save(app);
+        return productoRepository.findById(idProd).map(
+                prod ->{
+                    Mail mailRes = new Mail(res.getNombreUsuario(), mail.getName(), mail.getMotivo());
+                    mailService.save(mailRes);
+                    List<Mail> mails = prod.getEmailsSolicitantes();
+                    mails.add(mailRes);
+                    prod.setEmailsSolicitantes(mails);
+                    prod.setEstado("Pendiente");
+                    Producto producto = prod;
+                    this.save(producto);
+                    usuarioService.actualizarUsuario(producto);
+                    return this.save(prod);
+                }
+        ).get();
+    }
 }

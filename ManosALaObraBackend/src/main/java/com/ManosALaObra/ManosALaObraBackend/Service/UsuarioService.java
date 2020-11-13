@@ -197,7 +197,7 @@ public class UsuarioService {
         appService.save(app);
         for(Producto p: app.getProductos()){
             if(p.getId() == idProd){
-                Mail mail = new Mail(res.getNombreUsuario());
+                Mail mail = new Mail(res.getNombreUsuario(),"","");
                 mailService.save(mail);
                 List<Mail> mails = p.getEmailsSolicitantes();
                 mails.add(mail);
@@ -219,7 +219,7 @@ public class UsuarioService {
         appService.save(app);
         return productoRepository.findById(idProd).map(
                 prod ->{
-                    Mail mail = new Mail(res.getNombreUsuario());  // Se guarda como dato el mail del usuario solicitante.
+                    Mail mail = new Mail(res.getNombreUsuario(),"","");  // Se guarda como dato el mail del usuario solicitante.
                     mailService.save(mail);
                     List<Mail> mails = prod.getEmailsSolicitantes();
                     mails.add(mail);  // Se agrega a la lista de mails solicitantes un nuevo mail.
@@ -250,7 +250,7 @@ public class UsuarioService {
         ).get();
     }
 
-    private void actualizarUsuario(Producto producto) {
+    public void actualizarUsuario(Producto producto) {
         // Se actualiza la lista de donaciones del usuario donante.
         // Se actualiza sus donaciones con sus respectivos solicitantes.
         // Cada donación almacena el id de su usuario donante.

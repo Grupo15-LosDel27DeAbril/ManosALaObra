@@ -9,6 +9,7 @@ import { StateComponent } from './state/state.component';
 import { MyDonationsComponent } from './my-donations/my-donations.component';
 import { EmailDonationsComponent } from './email-donations/email-donations.comonent';
 import { ConfirmedRequestComponent } from './confirmed-request/confirmed-request.component';
+import { FormularioCreateComponent } from './formulario-create/formulario-create.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
     {path: "state", component: StateComponent},
     {path: "my-donations", component: MyDonationsComponent},
     {path: "email-donations", component: EmailDonationsComponent},
-    {path: "confirmed-request", component: ConfirmedRequestComponent}
+    {path: "confirmed-request", component: ConfirmedRequestComponent},
+    {path: "formulario-create", component: FormularioCreateComponent}
 ];
 
 @NgModule({

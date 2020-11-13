@@ -1,5 +1,7 @@
 export interface Mail{
 
     id: number,
-    mail: string
+    mail: string,
+    name: string,
+    motivo: string
 }

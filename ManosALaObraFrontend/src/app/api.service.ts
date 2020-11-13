@@ -6,6 +6,7 @@ import { UsuarioData } from './usuarioData';
 import { App } from './app';
 import { Registro } from './registro';
 import { DatePipe } from '@angular/common';
+import { Mail } from './mail';
 //import { observeOn } from 'rxjs/operators';
 
 @Injectable({
@@ -75,6 +76,10 @@ export class ApiService {
 
     mostrarFechaDesde(idProd: any): Observable<HttpResponse<String>>{
         return this.http.get<String>(this.urlLocal+"mostrarFechaPublicacion/"+idProd,{observe:'response'});
+    }
+
+    realizarSumatoriaDeMailConMotivo(mail: Mail, idProd: any, idUser: any,idApp: any): Observable<HttpResponse<Producto>>{
+        return this.http.put<Producto>(this.urlLocal+'agregarMailConMotivo/'+idProd+"/"+idUser+"/"+idApp,mail,{observe:'response'});
     }
     
 }

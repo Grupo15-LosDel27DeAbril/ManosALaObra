@@ -48,10 +48,11 @@ export class HomeComponent implements OnInit {
     public completarFormulario(producto){
         console.log("El email del que hizo esta donacion es: ", producto.emailDonante);
          this.appComp.solicitarLaDonacion(producto);
-         this.appComp.agregarMailSolicitante(producto.id);
-
+         this.data.idProductoActual = producto.id;
+         this.route.navigateByUrl('formulario-create');
+         //this.appComp.agregarMailSolicitante(producto.id);
          //console.log("Save button is clicked!", this.data.productos);
-         this.route.navigateByUrl('form');
+         //this.route.navigateByUrl('form');
     }
 
     public contieneMail(producto: Producto, mail: string){
