@@ -41,4 +41,7 @@ public interface ProductoRepository extends CrudRepository<Producto, Integer> {
     @Query(value = "Select * from BSProducto where categoria like %?1%", nativeQuery = true)
     List<Producto> findByCategoriaProductoContaining(String categoria);
 
+    /** Realizo la búsqueda de todas las donaciones de productos cuyo estado tenga contenido el string "estado" traido por parámetro **/
+    @Query(value = "Select * from BSProducto where estado like %?1%", nativeQuery = true)
+    List<Producto> findByEstadoProductoContaining(String estado);
 }

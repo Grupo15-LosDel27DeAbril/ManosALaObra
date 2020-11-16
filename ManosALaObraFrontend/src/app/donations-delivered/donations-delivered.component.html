@@ -1,0 +1,45 @@
+
+<body>
+    <div class="container p-destacados" style="margin-top: 70px;">
+     <div class="card card-cascade narrower"  style="box-shadow: 0px 0px 10px 6px black;"> 
+      <div class="py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        <div>
+          <button type="button" class=" btn btn-light">
+             <i class="fa fa-th-large mt-0"></i>
+           </button>
+            <button type="button" class=" btn btn-light">
+             <i class="fa fa-columns mt-0"></i>
+            </button>
+         </div>
+         <div class="col">
+          <button type="button" class="btn btn-outline-dark" (click)="volverAlHome()">
+             <small >Volver al Home</small><i class="fa fa-angle-double-left"></i>
+          </button>
+        </div>
+         <h1 class="white-text mx-3"> Donaciones Entregadas </h1>
+
+       </div> 
+     </div>
+        <div class="row">
+          <div class="col-md-3 mt-4" *ngFor="let producto of productos">
+            <div class="card text-center border-dark " style="box-shadow: 0px 0px 9px 4px grey;">
+              <div class="card-header">
+                  <img src={{producto.imagen}} class="card-img-top" alt="...">
+              </div>
+              <div class="card-body">
+                  <h5 class="card-title">{{producto.nombreProducto}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{producto.categoria}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">{{producto.descripcion}}</h6>
+                  <h6 class="card-subtitle mb-2 text-danger">Estado: {{producto.estado}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Desde: {{producto.fechaPublicacion}} </h6>
+                  <h6 class="card-subtitle mb-2 text-muted" class="p-2 bg-secondary text-white">Hasta: {{producto.validoHasta}} </h6>
+              </div>
+              <div class="card-footer text-muted">
+                <button class="btn btn-success" (click)="ubicacionEnMapa(producto)"> Punto de recolección </button>
+              </div>
+    
+            </div>
+          </div>
+        </div>
+    </div>
+</body>

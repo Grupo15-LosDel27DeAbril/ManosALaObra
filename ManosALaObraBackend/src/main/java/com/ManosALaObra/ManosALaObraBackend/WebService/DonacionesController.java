@@ -29,7 +29,14 @@ public class DonacionesController {
     @GetMapping("/api/donaciones")
     public List<Producto> listarDonaciones(){
         // Donaciones cargadas en la app.
-        return productoService.findAll();
+        return productoService.filtrarNoEntregados();
+    }
+
+    @CrossOrigin
+    @GetMapping("/api/donacionesEntregadas")
+    public List<Producto> listarDonacionesEntregadas(){
+        // Donaciones cargadas en la app que ya fueron entregadas.
+        return productoService.buscarProductosPorEstado("Entregado");
     }
 
     @CrossOrigin

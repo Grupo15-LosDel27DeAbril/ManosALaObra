@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -55,6 +56,21 @@ public class ProductoService {
         return productoRepository.findByCategoriaProductoContaining(categoria);
     }
 
+    public List<Producto> buscarProductosPorEstado(String estado) {
+        return productoRepository.findByEstadoProductoContaining(estado);
+    }
+
+    public List<Producto> filtrarNoEntregados(){
+        List<Producto> result = new ArrayList<Producto>();
+        for(Producto p: this.findAll()){
+            if(p.getEstado() != "Entregado"){
+                this.save(p);
+                result.add(p);
+            }
+        }
+      return result;
+    }
+
     @Transactional
     public void deleteAll(){
         productoRepository.deleteAll();
@@ -65,6 +81,7 @@ public class ProductoService {
         return productoRepository.findById(idProd).map(
                 prod ->{
                     prod.setEstado("Finalizado");
+                    prod.setFueDonado(true);
                     return this.save(prod);
                 }).get();
     }

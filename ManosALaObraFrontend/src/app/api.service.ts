@@ -28,6 +28,11 @@ export class ApiService {
             this.urlLocal+'donaciones');
     }
 
+    getDonacionesEntregadas(): Observable<Producto[]>{
+        /* Busco todas las donaciones entregadas cargadas en el sistema. */
+        return this.http.get<Producto[]>(this.urlLocal+'donacionesEntregadas');
+    }
+
     getUserData$(idUser: string): Observable<HttpResponse<UsuarioData>> {
         /* Se busca los datos del usuario. */
         return this.http.get<UsuarioData>(this.urlLocal+'usuario/'+idUser, {observe: 'response'});

@@ -12,6 +12,7 @@ export class DataService {
 
     categorias:string[] = ["Alimento","Fruta","Ropa","Juguete"];
     productos: Producto[] = [];
+    productosEntregados: Producto[] = [];
     nombreUsuario: String = "";
     userData: UsuarioData;
     userUpdate: Boolean = false;
