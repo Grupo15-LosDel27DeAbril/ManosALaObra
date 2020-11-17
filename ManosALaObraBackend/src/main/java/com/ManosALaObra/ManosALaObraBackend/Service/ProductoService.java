@@ -1,5 +1,6 @@
 package com.ManosALaObra.ManosALaObraBackend.Service;
 
+import Exceptions.DonationExistException;
 import com.ManosALaObra.ManosALaObraBackend.Model.App;
 import com.ManosALaObra.ManosALaObraBackend.Model.Mail;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
@@ -48,8 +49,13 @@ public class ProductoService {
     public List<Producto> findAll(){ return productoRepository.buscarTodosLosProductos();}
 
 
-    public List<Producto> buscarProductosPorConsulta(String consulta){
-        return productoRepository.findByNombreProductoContaining(consulta);
+    public List<Producto> buscarProductosPorConsulta(String consulta) throws Exception {
+        List<Producto> result = productoRepository.findByNombreProductoContaining(consulta);
+        if(result.size() == 0){
+            throw new DonationExistException("No existe la donacion con dicho nombre");
+        } else {
+            return productoRepository.findByNombreProductoContaining(consulta);
+        }
     }
 
     public List<Producto> buscarProductosPorCategoria(String categoria){

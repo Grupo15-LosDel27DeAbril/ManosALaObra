@@ -61,7 +61,7 @@ public class DonacionesController {
 
     @CrossOrigin
     @GetMapping("api/buscarProductos")
-    public List<Producto> buscarProductos(@RequestParam("q") String consulta){
+    public List<Producto> buscarProductos(@RequestParam("q") String consulta) throws Exception {
         return productoService.buscarProductosPorConsulta(consulta);
     }
 
