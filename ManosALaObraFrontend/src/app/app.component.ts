@@ -40,6 +40,10 @@ export class AppComponent {
        return this.data.productos
    }
 
+   public getProductosEntregados(): Array<{nombreProducto,categoria,descripcion,imagen}>{
+     return this.data.productosEntregados
+   }
+
    public getRegistros(): Array<{idProducto,emailSolicitante,emailDonante}>{
         return this.data.registros
    }

@@ -1,5 +1,6 @@
 package com.ManosALaObra.ManosALaObraBackend.Service;
 
+import Exceptions.DonationExistException;
 import com.ManosALaObra.ManosALaObraBackend.Model.App;
 import com.ManosALaObra.ManosALaObraBackend.Model.Mail;
 import com.ManosALaObra.ManosALaObraBackend.Model.Producto;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -47,12 +49,32 @@ public class ProductoService {
     public List<Producto> findAll(){ return productoRepository.buscarTodosLosProductos();}
 
 
-    public List<Producto> buscarProductosPorConsulta(String consulta){
-        return productoRepository.findByNombreProductoContaining(consulta);
+    public List<Producto> buscarProductosPorConsulta(String consulta) throws Exception {
+        List<Producto> result = productoRepository.findByNombreProductoContaining(consulta);
+        if(result.size() == 0){
+            throw new DonationExistException("No existe la donacion con dicho nombre");
+        } else {
+            return productoRepository.findByNombreProductoContaining(consulta);
+        }
     }
 
     public List<Producto> buscarProductosPorCategoria(String categoria){
         return productoRepository.findByCategoriaProductoContaining(categoria);
+    }
+
+    public List<Producto> buscarProductosPorEstado(String estado) {
+        return productoRepository.findByEstadoProductoContaining(estado);
+    }
+
+    public List<Producto> filtrarNoEntregados(){
+        List<Producto> result = new ArrayList<Producto>();
+        for(Producto p: this.findAll()){
+            if(p.getEstado() != "Entregado"){
+                this.save(p);
+                result.add(p);
+            }
+        }
+      return result;
     }
 
     @Transactional
@@ -65,6 +87,7 @@ public class ProductoService {
         return productoRepository.findById(idProd).map(
                 prod ->{
                     prod.setEstado("Finalizado");
+                    prod.setFueDonado(true);
                     return this.save(prod);
                 }).get();
     }

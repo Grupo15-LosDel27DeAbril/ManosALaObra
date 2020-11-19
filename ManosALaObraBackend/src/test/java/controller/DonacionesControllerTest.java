@@ -1,12 +1,14 @@
 package controller;
 
 
+import Exceptions.DonationExistException;
 import com.ManosALaObra.ManosALaObraBackend.Model.*;
 import com.ManosALaObra.ManosALaObraBackend.Service.AppService;
 import com.ManosALaObra.ManosALaObraBackend.Service.ProductoService;
 import com.ManosALaObra.ManosALaObraBackend.Service.UsuarioService;
 import com.ManosALaObra.ManosALaObraBackend.WebService.DonacionesController;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javassist.NotFoundException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -139,18 +141,18 @@ public class DonacionesControllerTest {
     @Test
     public void testObtenerBusquedaIncorrecta() throws Exception{
 
-        String found = "Naranjas";
+        String found = "Pera";
 
         Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 11), LocalDate.of(2020, 10, 25), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado", 0, false);
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
 
 
-        given(productoService.buscarProductosPorConsulta(found)).willReturn(this.agregarDonacion(productos, producto1));
+        given(productoService.buscarProductosPorConsulta(found)).willThrow(new DonationExistException("No existe la donacion con dicho nombre"));
 
-        mockMvc.perform(get("/api/buscarProductos").param("q", "Pera"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(jsonPath("$.size()", is(0)));
+        mockMvc.perform(get("/api/buscarProductos").param("q", found))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+
     }
 
     ArrayList<Producto> agregarDonacion(ArrayList<Producto> current, Producto producto){
