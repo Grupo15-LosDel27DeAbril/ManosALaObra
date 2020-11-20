@@ -20,6 +20,7 @@ public class Producto {
     private String nombreProducto;
     private String categoria;
     private String descripcion;
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String imagen;
     private Double latitude;
     private Double longitude;

@@ -24,6 +24,7 @@ export class DataService {
     productosActualesDeUsuarioLogueado: Producto[];
     emailsActualesEnDonaciones: Mail[];
     productoActual: Producto;
+    imagenActual: string | ArrayBuffer;
 
     constructor() {}
 

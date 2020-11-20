@@ -35,6 +35,7 @@ export class DonacionCreateComponent implements OnInit{
 
     ngOnInit() {
         this.productoForm.get('emailDonante').setValue(this.dataService.userData.email);
+        this.productoForm.get('imagen').setValue(this.dataService.imagenActual);
         (Mapboxgl as any).accessToken = environment.mapboxKey;
         this.mapa = new Mapboxgl.Map({
           container: 'mapa-mapbox',

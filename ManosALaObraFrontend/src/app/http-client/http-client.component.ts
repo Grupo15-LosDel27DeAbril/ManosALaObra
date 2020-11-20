@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpEventType } from '@angular/common/http';
+import { DataService } from '../data.service';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class HttpClientComponent implements OnInit {
   uploadedFilePath: string;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public data: DataService) { }
   ngOnInit(): void {
     
   }
@@ -35,7 +37,8 @@ export class HttpClientComponent implements OnInit {
       var reader = new FileReader();      
       reader.readAsDataURL(this.fileData); 
       reader.onload = (_event) => { 
-        this.previewUrl = reader.result; 
+        this.previewUrl = reader.result;
+        this.data.imagenActual = this.previewUrl;
       }
   }
   
@@ -57,7 +60,7 @@ export class HttpClientComponent implements OnInit {
      
     this.fileUploadProgress = '0%';
  
-    this.http.post('localhost:8080/app/fileUpload', formData, {
+    this.http.post('http://localhost:8080/api/fileUpload', formData, {
       reportProgress: true,
       observe: 'events'   
     })
@@ -72,5 +75,6 @@ export class HttpClientComponent implements OnInit {
       }
          
     }) 
-}
+ } 
+
 }
