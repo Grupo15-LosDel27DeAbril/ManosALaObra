@@ -29,6 +29,8 @@ export class DonacionCreateComponent implements OnInit{
     mapa: Mapboxgl.Map;
     lng: number;
     lat: number;
+    fileData: File;
+    previewUrl: any;
 
     constructor(public router: Router, public appComp: AppComponent, public dataService: DataService, public api: ApiService){
         this.productoForm = this.createFormGroup();
@@ -77,6 +79,27 @@ export class DonacionCreateComponent implements OnInit{
           })
     
       }
+
+
+    preview() {
+        // Show preview 
+        var mimeType = this.fileData.type;
+        if (mimeType.match(/image\/*/) == null) {
+          return;
+        }
+     
+        var reader = new FileReader();      
+        reader.readAsDataURL(this.fileData); 
+        reader.onload = (_event) => { 
+          this.previewUrl = reader.result;
+          this.productoForm.get('imagen').setValue(this.previewUrl);
+        }
+    }  
+
+    public fileProgress(fileInput: any) {
+        this.fileData = <File>fileInput.target.files[0];
+        this.preview();
+    }  
 
 
     public establecerUbicacion(){
