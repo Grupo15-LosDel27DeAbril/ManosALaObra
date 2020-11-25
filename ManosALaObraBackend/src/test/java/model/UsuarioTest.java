@@ -34,4 +34,10 @@ public class UsuarioTest extends TestCase {
         assertEquals(usuario.getProductos().size(), 1);
         assertEquals(usuario.getProductos().get(0).getNombreProducto(), "Banana");
     }
+
+    @Test
+    public void testDistanciaUnPuntoAOtro(){
+        Usuario usuario = UsuarioFactory.createWithLatitudeYLongitude(-34.754086, -58.249402);
+        assertEquals(usuario.distance(-34.724284, -58.260713), 3.47);
+    }
 }

@@ -108,6 +108,7 @@ public class UsuarioService {
         if( userReturnOptional.isEmpty() ){
             userReturn = new UsuarioBuilder().withNombreUsuario(user.getEmail())
                                              .withEmail(user.getEmail())
+                                             .withLatitudeLongitude(-34.7405353, -58.2535363)
                                              .withPassword("")
                                              .build();
             /* Se almacena el usuario en la BD */
@@ -281,6 +282,31 @@ public class UsuarioService {
                     }
                     return usuarioService.save(user);
                 }).get();
+    }
+
+    public Usuario coordenadasActual(Geo coord, Long idUser) {
+        /* Se fija las coordenadas en donde el usuario estableció su ubicación */
+        
+        return usuarioRepository.findById(idUser).map(
+                user -> {
+                    user.setLatitude(coord.getLatitude());
+                    user.setLongitude(coord.getLongitude());
+                    return usuarioService.save(user);
+                }
+        ).get();
+    }
+
+    public Usuario distanciaDeUnPuntoAOtro(Geo coord, Long idUser) {
+        /* Se calcula la distancia en kilómetetros entre la ubicación del usuario y el punto de recolección */
+
+        return usuarioRepository.findById(idUser).map(
+                user -> {
+                    Double distance = user.distance(coord.getLatitude(), coord.getLongitude());
+                    user.setDistancia(distance);
+                    /* En el atributo "distancia" del usuario, se setea dicha cantidad de kilómetros */
+                    return usuarioService.save(user);
+                }
+        ).get();
     }
 }
 

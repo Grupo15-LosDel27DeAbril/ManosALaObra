@@ -19,6 +19,12 @@ public class Usuario {
     private String domicilio;
     private String email;
     private String password;
+    private Double latitude;
+    private Double longitude;
+    private Double distancia;
+
+
+    private Double EARTH_RADIUS = 6371.0;
 
     @OneToMany(targetEntity = Producto.class)
     @JoinColumn(name="pd2_fk2",referencedColumnName = "id")
@@ -68,14 +74,29 @@ public class Usuario {
 
     public void setProductos(List<Producto> productos) { this.productos = productos; }
 
+    public Double getLatitude() { return latitude; }
+
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+
+    public Double getLongitude() { return longitude; }
+
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
+
+    public Double getDistancia() { return distancia; }
+
+    public void setDistancia(Double distancia) { this.distancia = distancia; }
+
     public Usuario(){}
 
-    public Usuario(String nombreUsuario, String domicilio, String email, String password, List<Producto> productos) {
+    public Usuario(String nombreUsuario, String domicilio, String email, String password, List<Producto> productos, Double latitude, Double longitude, Double distancia) {
         this.setNombreUsuario(nombreUsuario);
         this.setDomicilio(domicilio);
         this.setEmail(email);
         this.setPassword(password);
         this.setProductos(productos);
+        this.setLatitude(latitude);
+        this.setLongitude(longitude);
+        this.setDistancia(distancia);
     }
 
     public void donarProducto(Producto producto, App app){
@@ -87,4 +108,21 @@ public class Usuario {
         app.agregarRegistro(registro);
     }
 
+    private Double deg2rad(Double dec) {
+        return dec * (Math.PI / 180);
+    }
+
+    public Double distance(Double latitude, Double longitude) {
+
+        Double dLat = deg2rad(latitude - this.getLatitude());
+        Double dLon = deg2rad( longitude - this.getLongitude());
+        Double temp1 = Math.pow(Math.sin(dLat / 2), 2.0);
+        Double temp2 = Math.cos(deg2rad(this.getLatitude())) * Math.cos(deg2rad(latitude)) * Math.pow(Math.sin(dLon / 2), 2.0);
+        Double a = temp1 + temp2;
+        Double aTan = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        Double res = aTan * EARTH_RADIUS;
+        return Math.floor(res * 100) / 100;
+    }
+
 }
+

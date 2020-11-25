@@ -11,6 +11,7 @@ import { EmailDonationsComponent } from './email-donations/email-donations.comon
 import { ConfirmedRequestComponent } from './confirmed-request/confirmed-request.component';
 import { FormularioCreateComponent } from './formulario-create/formulario-create.component';
 import { DonationsDeliveredComponent } from './donations-delivered/donations-delivered.component';
+import { UbicationComponent } from './ubication/ubication.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: "email-donations", component: EmailDonationsComponent},
     {path: "confirmed-request", component: ConfirmedRequestComponent},
     {path: "formulario-create", component: FormularioCreateComponent},
-    {path: "donations-delivered", component: DonationsDeliveredComponent}
+    {path: "donations-delivered", component: DonationsDeliveredComponent},
+    {path: "ubication", component: UbicationComponent}
 ];
 
 @NgModule({

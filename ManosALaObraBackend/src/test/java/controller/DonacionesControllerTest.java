@@ -102,7 +102,7 @@ public class DonacionesControllerTest {
         Long idUser = 1L;
         Long idApp = 1L;
 
-        Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787", new ArrayList<Producto>());
+        Usuario usuario = new Usuario("Alexander", "calle falsa 123", "alexander@gmail.com", "8787", new ArrayList<Producto>(), 0.0, 0.0, 0.0);
         //usuario.setId(1L);
 
         Producto producto = new Producto("Polenta", "Un paquete de polenta en buen estado", "una imagen", "Alimento", -36.657634, -58.532456, "La Plata", LocalDate.of(2020, 10, 10), LocalDate.of(2020, 10, 20), usuario.getEmail(), new ArrayList<Mail>(), "sin estado", 0, false);

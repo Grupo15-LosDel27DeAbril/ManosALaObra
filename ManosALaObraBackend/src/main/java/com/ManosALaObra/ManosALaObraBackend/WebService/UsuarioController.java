@@ -57,4 +57,16 @@ public class UsuarioController {
         return usuarioService.eliminarDonacion(idUser, idProd);
     }
 
+    @CrossOrigin
+    @PutMapping("/api/usuario/establecerUbicacion/{idUser}")
+    public Usuario coordenadasUsuario(@RequestBody Geo coord, @PathVariable Long idUser){
+        return usuarioService.coordenadasActual(coord, idUser);
+    }
+
+    @CrossOrigin
+    @PutMapping("/api/usuario/distancia/{idUser}")
+    public Usuario distanciaEntreCoordenadas(@RequestBody Geo coord, @PathVariable Long idUser){
+        return usuarioService.distanciaDeUnPuntoAOtro(coord, idUser);
+    }
+
 }

@@ -29,6 +29,7 @@ import { EmailDonationsComponent } from './email-donations/email-donations.comon
 import { ConfirmedRequestComponent } from './confirmed-request/confirmed-request.component';
 import { FormularioCreateComponent } from './formulario-create/formulario-create.component';
 import { DonationsDeliveredComponent } from './donations-delivered/donations-delivered.component';
+import { UbicationComponent } from './ubication/ubication.component';
 /*modulos para fecha y moneda*/
 //en app.component
 
@@ -58,7 +59,8 @@ export function provideConfig() {
         DonacionCreateComponent,
         MapComponent,
         FormularioCreateComponent,
-        DonationsDeliveredComponent
+        DonationsDeliveredComponent,
+        UbicationComponent
     ],
     imports: [
       BrowserModule,

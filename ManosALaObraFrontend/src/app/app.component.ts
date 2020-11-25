@@ -13,6 +13,7 @@ import { retry, catchError } from 'rxjs/operators';
 /*para la traduccion*/
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Title } from '@angular/platform-browser';
+import { Geo } from './geo';
 
 
 @Component({
@@ -171,6 +172,24 @@ export class AppComponent {
                                    },
                            err => console.log(err));         
    }
+
+   public fijarUbicacion(latitud: number, longitud: number){
+    var coord: Geo = {id:1, latitude: latitud, longitude: longitud};
+    return this.api.realizarUbicacion(coord, this.data.userData.id)
+                    .subscribe(resp => { const data = resp;
+                                         console.log(data);
+                                       },
+                              err => console.log(err));
+   }
+
+   public calcularDistancia(latitud: number, longitud: number){
+    var coord: Geo = {id:1, latitude: latitud, longitude: longitud};
+    return this.api.calcularDistanciaConCoord(coord, this.data.userData.id)
+                   .subscribe(resp => { const data = resp;
+                                        console.log(data);
+                                      },
+                              err => console.log(err));
+    }
    
 }
 

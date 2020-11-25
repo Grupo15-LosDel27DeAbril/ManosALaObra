@@ -7,6 +7,7 @@ import { App } from './app';
 import { Registro } from './registro';
 import { DatePipe } from '@angular/common';
 import { Mail } from './mail';
+import { Geo } from './geo';
 //import { observeOn } from 'rxjs/operators';
 
 @Injectable({
@@ -86,5 +87,12 @@ export class ApiService {
     realizarSumatoriaDeMailConMotivo(mail: Mail, idProd: any, idUser: any,idApp: any): Observable<HttpResponse<Producto>>{
         return this.http.put<Producto>(this.urlLocal+'agregarMailConMotivo/'+idProd+"/"+idUser+"/"+idApp,mail,{observe:'response'});
     }
-    
+
+    realizarUbicacion(coord: Geo, idUser: any): Observable<HttpResponse<UsuarioData>>{
+        return this.http.put<UsuarioData>(this.urlLocal+'/usuario/establecerUbicacion/'+idUser,coord,{observe:'response'});
+    }
+
+    calcularDistanciaConCoord(coord: Geo, idUser: any): Observable<HttpResponse<UsuarioData>>{
+        return this.http.put<UsuarioData>(this.urlLocal+'/usuario/distancia/'+idUser,coord,{observe:'response'});
+    }    
 }

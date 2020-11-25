@@ -6,6 +6,8 @@ export interface UsuarioData {
     domicilio: string,
     email: string,
     password: string,
-    productos: Producto[]
-
-}
+    productos: Producto[],
+    latitude: number,
+    longitude: number,
+    distancia: number,
+} 
