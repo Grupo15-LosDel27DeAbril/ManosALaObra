@@ -30,14 +30,15 @@ export class UbicationComponent implements OnInit{
     }
 
     ngOnInit(){
+        navigator.geolocation.getCurrentPosition( position => {
         (Mapboxgl as any).accessToken = environment.mapboxKey;
         this.mapa = new Mapboxgl.Map({
             container: 'mapa-mapbox',
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [ this.data.userData.longitude, this.data.userData.latitude ], // LNG, LAT
+            center: [ position.coords.longitude, position.coords.latitude ], // LNG, LAT
             zoom: 16.6
         });
-        this.crearMarcador(this.data.userData.longitude, this.data.userData.latitude);
+        this.crearMarcador(position.coords.longitude, position.coords.latitude);
         var geocoder = new MapboxGeocoder({
             accessToken: (Mapboxgl as any).accessToken,
             mapboxgl: (Mapboxgl as any),
@@ -47,7 +48,7 @@ export class UbicationComponent implements OnInit{
         this.mapa.addControl(geocoder);
         const markerSearch2 = new Mapboxgl.Marker({
               draggable: true
-        });
+        })});
     }
 
     crearMarcador(lng: number, lat: number){
