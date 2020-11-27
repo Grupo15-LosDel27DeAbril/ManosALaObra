@@ -121,7 +121,7 @@ public class UsuarioService {
 
 
     public Usuario solicitarDonacion(Long idUser, Long idProd) {
-        // Se solicita determianda donación subida en la app.
+        // Se solicita determianda donación subida en la app mediante el envío de mail.
         Producto producto = productoRepository.findById(idProd).get();
         return usuarioRepository.findById(idUser).map(
                 user ->{

@@ -27,7 +27,7 @@ public class ProductoTest extends TestCase {
     public void testFechaLimitePublicacion(){
         productoBuilder.withFechaLimite(LocalDate.now());
         Producto producto = productoBuilder.build();
-        assertEquals(producto.getValidoHasta(), "09-11-2020");
+        assertEquals(producto.getValidoHasta(), "27-11-2020");
     }
 
     @Test

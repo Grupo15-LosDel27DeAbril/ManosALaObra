@@ -134,6 +134,7 @@ export class AppComponent {
    }
 
    public eliminarDonacion(idUser: number, idProd: number){
+     /** No se elimina del sistema la donación; se lo marca como estado "finalizado". **/
      this.api.eliminarDonacionDeUsuario(idUser,idProd)
              .subscribe(resp => { const data = resp;
                                   console.log(data);
@@ -158,6 +159,7 @@ export class AppComponent {
    }
 
    public imprimirFechaDePublicacion(id: number){
+     /** Nota mental: eliminar esto (no se usa) **/
      return this.api.mostrarFechaDesde(id)
              .subscribe(resp => { const data = resp;
                                   console.log(data);
@@ -174,6 +176,7 @@ export class AppComponent {
    }
 
    public fijarUbicacion(latitud: number, longitud: number){
+     /** Sirve para determinar la coordenada actual del usuario  **/
     var coord: Geo = {id:1, latitude: latitud, longitude: longitud};
     return this.api.realizarUbicacion(coord, this.data.userData.id)
                     .subscribe(resp => { const data = resp;

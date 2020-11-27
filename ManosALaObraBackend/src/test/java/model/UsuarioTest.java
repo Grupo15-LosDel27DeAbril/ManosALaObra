@@ -33,6 +33,7 @@ public class UsuarioTest extends TestCase {
         assertEquals(app.getProductos().size(), 1);
         assertEquals(usuario.getProductos().size(), 1);
         assertEquals(usuario.getProductos().get(0).getNombreProducto(), "Banana");
+        assertEquals(usuario.getProductos().size(), 1);
     }
 
     @Test
