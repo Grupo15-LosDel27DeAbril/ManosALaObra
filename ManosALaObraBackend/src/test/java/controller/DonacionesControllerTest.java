@@ -145,7 +145,9 @@ public class DonacionesControllerTest {
 
         Producto producto1 = new Producto("Naranjas", "6 naranjas dulces", "https://thumbs.dreamstime.com/z/naranjas-en-plato-36927385.jpg", "Frutas", -34.720659, -58.254300, "Catedral de Quilmes", LocalDate.of(2020, 10, 11), LocalDate.of(2020, 10, 25), "alex.quinhonez@gmail.com", new ArrayList<Mail>(), "sin estado", 0, false);
 
-        ArrayList<Producto> productos = new ArrayList<Producto>();
+        //ArrayList<Producto> productos = new ArrayList<Producto>();
+        //productos.add(producto1);
+        productoService.save(producto1);
 
 
         given(productoService.buscarProductosPorConsulta(found)).willThrow(new DonationExistException("No existe la donacion con dicho nombre"));
