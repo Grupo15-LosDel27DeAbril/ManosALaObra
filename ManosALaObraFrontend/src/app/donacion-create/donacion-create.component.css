@@ -37,8 +37,11 @@
 #mapa-mapbox{
   /*width: 350%;
   height: 680%;*/
-  width: 800px;
-  height: 350px;
+  width: 1110px;
+  height: 450px;
   padding: 50px;
   border: 1px solid blue;
+}
+.ubicacion{
+  font-size: 17px;
 }
