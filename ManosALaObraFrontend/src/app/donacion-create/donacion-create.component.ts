@@ -101,6 +101,12 @@ export class DonacionCreateComponent implements OnInit{
         this.preview();
     }  
 
+    public deleteFile(){
+        this.previewUrl = "";
+        this.productoForm.get('imagen').setValue(this.previewUrl);
+
+    }
+
 
     public establecerUbicacion(){
         this.router.navigateByUrl('map');
