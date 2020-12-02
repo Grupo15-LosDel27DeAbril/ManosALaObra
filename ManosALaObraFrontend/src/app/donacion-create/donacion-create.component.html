@@ -13,9 +13,9 @@
         <div class="col-10">
           <h1>Realizar Donación</h1>
         </div>
-        <div class="col">
+        <div class="col-2">
           <button type="button" class="btn btn-outline-light" (click)="volverAlHome()">
-            <small>Volver al Home</small><i class="fa fa-angle-double-left"></i>
+            <small>Volver al Home  </small><i class="fa fa-angle-double-left"></i>
           </button>
         </div>
       </div>
@@ -111,29 +111,18 @@
 
             <div class="form-group col-md-12">
               <label> Imagen </label>
-              <input type="text" class="form-control" formControlName="imagen">
-
-              <div class="alert-danger" *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)">
-                <div class="container-error-message" *ngIf="imagen.errors.required">
-                  <h4>La imagen de la donación es obligatoria.</h4>
-                </div>
-                <div class="container-error-message" *ngIf="imagen.errors.minlength">
-                  <h4> La imagen de la donación tiene que ser mayor a 5 caracteres.</h4>
-                </div>
-              </div>
 
               <div class="container">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <h3>Choose File</h3>            
+                    <div class="col-md-6 offset-md-3">            
                         <div class="form-group">
-                            <input type="file" name="image" (change)="fileProgress($event)"/>
+                          <input type="file" name="image" (change)="fileProgress($event)"/>
                         </div>
                         <div *ngIf="fileUploadProgress">
                             Upload progress: {{ fileUploadProgress }}
                         </div>
                         <div class="image-preview mb-3" *ngIf="previewUrl">
-                            <img [src]="previewUrl" height="300" />      
+                            <img [src]="previewUrl" height="200" />      
                         </div>
                     </div>
                 </div>

@@ -130,6 +130,7 @@ export class DonacionCreateComponent implements OnInit{
     }
     onResetForm(){
         this.productoForm.reset();
+        this.previewUrl = "";
     }
 
     onSaveForm(){

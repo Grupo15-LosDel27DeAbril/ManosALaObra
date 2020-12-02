@@ -14,6 +14,8 @@ import { DataService } from '../data.service';
 
 export class MyDonationsComponent implements OnInit{
 
+    count: number = 0;
+
     constructor(public appComp: AppComponent, private route: Router, public data: DataService){}
 
     ngOnInit(){
@@ -37,6 +39,7 @@ export class MyDonationsComponent implements OnInit{
 
     public cambiarAEstadoEntregado(producto){
         this.appComp.cambiarEstadoEntregado(producto.id);
+        this.route.navigateByUrl('form');
     }
 
     public noEsteEntregado(producto){
