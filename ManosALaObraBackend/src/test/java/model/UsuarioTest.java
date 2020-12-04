@@ -7,6 +7,11 @@ import com.ManosALaObra.ManosALaObraBackend.Model.*;
 import junit.framework.TestCase;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
+
 
 public class UsuarioTest extends TestCase {
 
@@ -40,5 +45,12 @@ public class UsuarioTest extends TestCase {
     public void testDistanciaUnPuntoAOtro(){
         Usuario usuario = UsuarioFactory.createWithLatitudeYLongitude(-34.754086, -58.249402);
         assertEquals(usuario.distance(-34.724284, -58.260713), 3.47);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth(),
+                LocalTime.now().getHour(), LocalTime.now().getMinute());
+
+        System.out.println("Hoy es: " + LocalDate.now().getDayOfMonth()+"/"+LocalDate.now().getMonth().getValue()+"/"+LocalDate.now().getYear()
+                + ", " + LocalTime.now().getHour() + ":" +LocalTime.now().getMinute()+" hs.");
     }
 }

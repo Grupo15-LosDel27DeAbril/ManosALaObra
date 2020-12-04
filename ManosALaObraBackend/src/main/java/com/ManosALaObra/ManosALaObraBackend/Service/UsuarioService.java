@@ -168,8 +168,8 @@ public class UsuarioService {
         calendar.set(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth(),
                      LocalTime.now().getHour(), LocalTime.now().getMinute());
 
-        body = body.concat("La solicitud fue realizada en fecha y hora: ") + calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR)
-                + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
+        body = body.concat("La solicitud fue realizada en fecha y hora: ") + LocalDate.now().getDayOfMonth()+"/"+LocalDate.now().getMonth().getValue()+"/"+LocalDate.now().getYear()
+                + ", " + LocalTime.now().getHour() + ":" +LocalTime.now().getMinute()+" hs."+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
         sendMailService.sendMail("manosalaobra.27.04@gmail.com", producto.getEmailDonante(), titulo, body);
@@ -183,8 +183,8 @@ public class UsuarioService {
         calendar.set(LocalDate.now().getYear(), LocalDate.now().getMonth().getValue(), LocalDate.now().getDayOfMonth(),
                      LocalTime.now().getHour(), LocalTime.now().getMinute());
 
-        body = body.concat("La confirmación fue realizada en fecha y hora: ") + calendar.get(Calendar.DAY_OF_MONTH)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR)
-                + ", " + calendar.get(Calendar.HOUR_OF_DAY) + ":" +calendar.get(Calendar.MINUTE)+" hs."+".\n";
+        body = body.concat("La confirmación fue realizada en fecha y hora: ") + LocalDate.now().getDayOfMonth()+"/"+LocalDate.now().getMonth().getValue()+"/"+LocalDate.now().getYear()
+                + ", " + LocalTime.now().getHour() + ":" +LocalTime.now().getMinute()+" hs."+".\n";
 
         body = body.concat("Que tenga un buen dia le desea ManosALaObra.");
         sendMailService.sendMail("manosalaobra.27.04@gmail.com", mail, titulo, body);
